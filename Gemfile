@@ -19,6 +19,7 @@ gem "puma", "~> 5.0"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
+gem 'faker'
 
 gem 'dry-types'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]

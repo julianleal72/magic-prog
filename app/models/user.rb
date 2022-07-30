@@ -5,5 +5,5 @@ class User < ApplicationRecord
 
     validates :username, :password_digest, presence: true
     validates :username, length: {minimum: 5, maximum: 15}, uniqueness: true
-    validtes :bio, length: {maximum: 500}
+    validates :bio, length: {maximum: 500}
 end

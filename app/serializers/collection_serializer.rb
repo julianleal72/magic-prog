@@ -1,3 +1,4 @@
 class CollectionSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :user_id, :title
+  has_many :cards
 end

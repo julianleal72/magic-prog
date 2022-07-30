@@ -108,6 +108,8 @@ GEM
       dry-logic (~> 1.0, >= 1.0.2)
     equalizer (0.0.11)
     erubi (1.10.0)
+    faker (2.22.0)
+      i18n (>= 1.8.11, < 2)
     faraday (0.17.5)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.14.0)
@@ -236,6 +238,7 @@ DEPENDENCIES
   bootsnap
   debug
   dry-types
+  faker
   listen (~> 3.3)
   mtg_sdk
   pg (~> 1.1)

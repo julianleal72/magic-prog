@@ -1,3 +1,3 @@
 class DeckSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :user_id, :name, :format, :description, :card_id, :size
 end
