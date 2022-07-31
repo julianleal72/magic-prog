@@ -19,7 +19,7 @@ class CollectionsController < ApplicationController
     end
     def destroy
         collection = Collection.find(params[:id])
-        collections.decks.destroy_all
+        # collection.decks.destroy_all
         collection.cards.destroy_all
         collection.destroy
         render json: {message: "Deleted"}, status: :ok
@@ -27,7 +27,7 @@ class CollectionsController < ApplicationController
 
     private
 
-    def collections_params
+    def collection_params
         params.permit(:user_id, :title, :card_id)
     end
 end

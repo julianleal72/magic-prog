@@ -20,6 +20,7 @@ class CardsController < ApplicationController
     def destroy
         card = Card.find(params[:id])
         card.destroy
+        render json: {message: "Deleted"}, status: :ok
     end
 
     private
