@@ -12,11 +12,13 @@ class CardsController < ApplicationController
         card = Card.create!(card_params)
         render json: card, status: :created
     end
+    
     def update
         card = Card.find(params[:id])
         card.update!(card_params)
         render json: card, status: :ok
     end
+
     def destroy
         card = Card.find(params[:id])
         card.destroy
