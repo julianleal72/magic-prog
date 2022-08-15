@@ -27,6 +27,6 @@ class DecksController < ApplicationController
     private
 
     def deck_params
-        params.permit(:user_id, :name, :description, :format, :card_id, :size)
+        params.permit(:user_id, :name, :description, :format, :card_id)
     end
 end

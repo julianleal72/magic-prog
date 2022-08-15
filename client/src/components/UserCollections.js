@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom"
 import { useState, useEffect } from "react";
+import Collection from "./Collection";
 
 function UserCollections({user}){
     const [collections, setCollections] = useState([]);
@@ -20,7 +21,7 @@ function UserCollections({user}){
             <button><Link to="/collections/new">New Collection</Link></button>
             {collections.length > 0 ? 
             <div>
-            {user.collections.map((collection) => <div>{collection.title} -- {collection.description}</div>
+            {user.collections.map((collection) => <Collection collection={collection} user={user}/>
             )}
             </div>
             : "You have no collections! Try creating one."}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SetCard from "./SetCard.js";
+import SetTile from "./SetTile.js";
 
 function Drafter() {
   // let setArr =[]
@@ -13,7 +13,7 @@ function Drafter() {
   useEffect(() => {
     let count = 1
     while (count < 3) {
-      getSets(count);
+      getSets(count)
       count += 1
     }
     setSets(sets1.concat(sets2));
@@ -70,14 +70,14 @@ function Drafter() {
 
   function handleFilter(e) {
     setCurrentFilter(e.target.value);
-    handleSort(e.target.value);
+    handleSort(e.target.value)
     console.log(currentFilter)
   }
   function handleSort(filter) {
     // console.log(filter)
     let toSet = [...sets];
     if (filter === "code") {
-      toSet.sort((a, b) => (a.code > b.code ? 1 : -1));
+      toSet.sort((a, b) => (a.code > b.code ? 1 : -1))
     }
     if (filter === "name") {
       toSet.sort((a, b) => (a.name > b.name ? 1 : -1));
@@ -112,7 +112,7 @@ function Drafter() {
         <option value="chron desc">Chronological Descending</option>
       </select>
       <br />
-      {chosenSet ? <SetCard set={chosenSet} /> : null}
+      {chosenSet ? <SetTile set={chosenSet} /> : null}
     </div>
   );
 }

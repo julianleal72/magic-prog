@@ -11,6 +11,7 @@ import UserEditForm from "./components/UserEditForm";
 import Home from "./components/Home";
 import UserCollections from "./components/UserCollections.js"
 import NewCollectionForm from "./components/NewCollectionForm.js";
+import CollectionInDepth from "./components/CollectionInDepth";
 //import { makeObservable, observable, computed, action, flow } from "mobx"
 
 // class UserStore{
@@ -81,6 +82,8 @@ function App() {
         <Route path="/user/edit" element={<UserEditForm user={user} updateUser={updateUser} />} />
         <Route path="/user/collections" element={<UserCollections user={user}/>}/>
         <Route path="/collections/new" element={<NewCollectionForm user={user}/>}/>
+        <Route path="/user/collections/:id" element={<CollectionInDepth/>}/>
+        <Route path="/decks/new" element={<NewDeck user={user}/>}/>
       </Routes>
     </div>
   );

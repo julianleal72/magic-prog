@@ -6,6 +6,7 @@ function PackOpener() {
   let arr = [];
   const navigate = useNavigate();
   const location = useLocation();
+  const [goAgain, setGoAgain] = useState(false)
   const [errors, setErrors] = useState([]);
   const [packs, setPacks] = useState([]);
   const [index, setIndex] = useState(0);
@@ -21,7 +22,7 @@ function PackOpener() {
       getPack(location.state.set.set.code);
       i++;
     }
-  }, []);
+  }, [goAgain]);
 
   function getPack(code) {
     fetch(`https://api.magicthegathering.io/v1/sets/${code}/booster`)
@@ -58,7 +59,7 @@ function PackOpener() {
 
   function handleOpen() {
     // if (!opened) {
-    setOpened(!opened);
+    setOpened(!opened)
     console.log(index);
     setOpenedPacks([...openedPacks, packs[index]]);
     setIndex(index + 1);
@@ -74,6 +75,12 @@ function PackOpener() {
     openedPacks.push(packs.slice(index, packs.length));
     setOpenedAll(true);
     setIndex(location.state.numPacks.numPacks);
+  }
+  function handleDiscard(){
+    navigate("/drafter")
+  }
+  function goagain(){
+    setGoAgain(!goAgain)
   }
 
   //don't display dupes and just display how many copies
@@ -97,11 +104,12 @@ function PackOpener() {
       {index > packs.length - 1 ? (
         <div>
           <button onClick={handleCommit}>Add to Collection</button>
-          {/* <button onClick={navigate("/drafter")}>Draft Again</button> */}
+          <button onClick={goagain}>Re-Do Draft</button>
         </div>
       ) : (
         <button onClick={handleOpenAll}>Open All Remaining</button>
       )}
+      <div><button onClick={handleDiscard}>Discard Draft</button></div>
       <div>
         {openedPacks.map((pack) => (
           <Pack pack={pack} />
