@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
 
 function Header({ user, onLogout }) {
   function handleLogout() {
@@ -11,18 +10,18 @@ function Header({ user, onLogout }) {
   return (
     <header>
       {user ? null: <Link to="signup">
-      <Button variant="outlined" style={{color:"#000000"}}>Signup</Button>
+      <button variant="outlined" style={{color:"#000000"}}>Signup</button>
       </Link>}
 
       {user ? (
         <div>
           <p>Welcome, {user.username}!</p>
-          <Button variant="outlined" style={{color:"#000000"}} onClick={handleLogout}>Logout
-          </Button>
+          <button variant="outlined" style={{color:"#000000"}} onClick={handleLogout}>Logout
+          </button>
         </div>
       ) : (
         <Link to="/login">
-          <Button variant="outlined" style={{color:"#000000"}}>Login</Button>
+          <button variant="outlined" style={{color:"#000000"}}>Login</button>
         </Link>
       )}
 

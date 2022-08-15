@@ -1,5 +1,5 @@
 
-require 'mtg_sdk'
+#puts MTG::Set.generate_booster('ktk')
 
 puts "Seeding Users"
 3.times do
@@ -23,5 +23,28 @@ end
 
 puts "Seeding Decks"
 Deck.create(user_id: 2, name: "Sidewalk slam", format: "Freeform", description: "Everything is 1 cent")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 puts "Done!"
