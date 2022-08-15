@@ -3,7 +3,7 @@ class CreateCards < ActiveRecord::Migration[7.0]
     create_table :cards do |t|
       t.integer :user_id
       t.integer :collection_id
-      t.string  :info
+      t.text  :info, default: {}
       t.timestamps
     end
   end

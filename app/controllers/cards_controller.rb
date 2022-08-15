@@ -28,6 +28,6 @@ class CardsController < ApplicationController
     private
 
     def card_params
-        params.permit(:user_id, :collection_id, :info)
+        params.permit(:collection_id, info: {})
     end
 end

@@ -10,24 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_30_213853) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_15_004804) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cards", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "collection_id"
-    t.string "info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "info", default: {}
   end
 
   create_table "collections", force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
-    t.integer "card_id", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
   end
 
   create_table "decks", force: :cascade do |t|
@@ -47,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_30_213853) do
     t.text "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
   end
 
 end
