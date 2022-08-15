@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 function UserCollections({user}){
     const [collections, setCollections] = useState([]);
+
     useEffect(() => {
       async function goGetEm(){
         await fetch(`/users/${user.id}`)
@@ -17,7 +18,12 @@ function UserCollections({user}){
     return(
         <div>
             <button><Link to="/collections/new">New Collection</Link></button>
-            {collections.length > 0 ? user.collections.map((collection) => <div>{collection.title} -- {collection.description}</div>): "You have no collections! Try creating one."}
+            {collections.length > 0 ? 
+            <div>
+            {user.collections.map((collection) => <div>{collection.title} -- {collection.description}</div>
+            )}
+            </div>
+            : "You have no collections! Try creating one."}
         </div>
     )
 

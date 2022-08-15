@@ -6,7 +6,7 @@ function PackOpener() {
   let arr = [];
   const navigate = useNavigate();
   const location = useLocation();
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
   const [packs, setPacks] = useState([]);
   const [index, setIndex] = useState(0);
   const [openedAll, setOpenedAll] = useState(false);
@@ -57,22 +57,26 @@ function PackOpener() {
   }
 
   function handleOpen() {
-    if (!opened) {
-      setOpened(!opened);
-      setOpenedPacks([...openedPacks, packs[index]]);
-      setIndex(index + 1);
-    }
+    // if (!opened) {
+    setOpened(!opened);
+    console.log(index);
+    setOpenedPacks([...openedPacks, packs[index]]);
+    setIndex(index + 1);
+    // }
   }
   function handleNext() {
-    if (opened) {
-      setOpened(!opened);
-    }
+    // if (opened) {
+    console.log(index);
+    setOpened(!opened);
+    // }
   }
   function handleOpenAll() {
     openedPacks.push(packs.slice(index, packs.length));
-    setOpenedAll(true)
+    setOpenedAll(true);
     setIndex(location.state.numPacks.numPacks);
   }
+
+  //don't display dupes and just display how many copies
 
   return (
     <div>
@@ -81,7 +85,7 @@ function PackOpener() {
           index >= packs.length - 1 ? null : (
             <button onClick={handleNext}>Next Pack</button>
           )
-        ) : (openedAll ? null :
+        ) : openedAll ? null : (
           <button onClick={handleOpen}>Open Pack</button>
         )}
       </div>
@@ -90,7 +94,7 @@ function PackOpener() {
         Packs Left: {location.state.numPacks.numPacks - index}/
         {location.state.numPacks.numPacks}
       </h5>
-      {index >= packs.length - 1 ? (
+      {index > packs.length - 1 ? (
         <div>
           <button onClick={handleCommit}>Add to Collection</button>
           {/* <button onClick={navigate("/drafter")}>Draft Again</button> */}
@@ -98,7 +102,11 @@ function PackOpener() {
       ) : (
         <button onClick={handleOpenAll}>Open All Remaining</button>
       )}
-      <div>{openedPacks.map(pack =><Pack pack={pack} />)}</div>
+      <div>
+        {openedPacks.map((pack) => (
+          <Pack pack={pack} />
+        ))}
+      </div>
     </div>
   );
 }

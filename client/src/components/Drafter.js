@@ -11,16 +11,16 @@ function Drafter() {
   const [chosenSet, setChosenSet] = useState(null);
 
   useEffect(() => {
-    let count = 1;
+    let count = 1
     while (count < 3) {
       getSets(count);
-      count += 1;
+      count += 1
     }
     setSets(sets1.concat(sets2));
   }, []);
 
-  async function getSets(count) {
-    await fetch(`https://api.magicthegathering.io/v1/sets?page=${count}`)
+  function getSets(count) {
+    fetch(`https://api.magicthegathering.io/v1/sets?page=${count}`)
       .then((r) => r.json())
       .then((r) => {
         let setArr = [];
@@ -71,7 +71,7 @@ function Drafter() {
   function handleFilter(e) {
     setCurrentFilter(e.target.value);
     handleSort(e.target.value);
-    console.log(currentFilter);
+    console.log(currentFilter)
   }
   function handleSort(filter) {
     // console.log(filter)
@@ -85,11 +85,11 @@ function Drafter() {
     if (filter.includes("chron")) {
       toSet.sort((a, b) => (a.release > b.release ? 1 : -1));
       if (filter.includes("desc")) {
-        toSet.reverse();
+        toSet.reverse()
       }
     }
-    setSets([]);
-    setSets(toSet);
+    setSets([])
+    setSets(toSet)
     console.log(sets)
   }
 
@@ -102,8 +102,8 @@ function Drafter() {
             {set.name} - {set.code}
           </option>
         ))}
-      </select>
 
+      </select>
       <label>Sort by:</label>
       <select onChange={(e) => handleFilter(e)}>
         <option value="code">Alphabetical by Set Code</option>
