@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import UserNav from "./components/UserNav";
-import Header from "./components/Header";
 import Login from "./components/Login";
 import SignUp from "./components/Signup";
 import Drafter from "./components/Drafter";
@@ -21,6 +20,9 @@ import UserDecks from "./components/UserDecks.js"
 function App() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [sets, setSets] = useState([]);
+  const [sets1, setSets1] = useState([]);
+  const [sets2, setSets2] = useState([]);
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -58,18 +60,17 @@ function App() {
   return (
     <div className="App">
       <UserProvider>
-      <Header user={user} onLogout={handleLogout} />
-      {user ? <UserNav /> : null}
+      <UserNav user={user} onLogout={handleLogout}/>
       <Routes>
         <Route exact path="/" element={<Home/>} />
-        <Route path="/drafter" element={<Drafter/>} />
+        <Route path="/drafter" element={<Drafter user={user}/>} />
         <Route path="/packopener" element={<PackOpener/>}/>
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/user" element={<User user={user} deleteUser={deleteUser} />} />
         <Route path="/user/edit" element={<UserEditForm user={user} updateUser={updateUser} />} />
         <Route path="/user/collections" element={<UserCollections user={user}/>}/>
-        <Route path="/collections/new" element={<NewCollectionForm user={user}/>}/>
+        <Route path="/collections/new" element={<NewCollectionForm user={user} drafter={false}/>}/>
         <Route path="/user/collections/:id" element={<CollectionInDepth/>}/>
         <Route path="/decks/new" element={<DeckHeader user={user} meth={"POST"}/>}/>
         <Route path="/decks/edit/:id" element={<DeckEdit user={user}/>}/>

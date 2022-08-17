@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function NewCollectionForm({ user }) {
+function NewCollectionForm({ user, drafter }) {
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
   const [formData, setFormData] = useState({});
-
+  const [reload, setReload] = useState(false)
   useEffect(() => {
     let starterFormData = {
       user_id: (user ? user.id : 0),
@@ -13,7 +13,8 @@ function NewCollectionForm({ user }) {
       description: "",
     };
     setFormData(starterFormData);
-  }, []);
+    console.log("wereloaded")
+  }, [reload]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -28,7 +29,8 @@ function NewCollectionForm({ user }) {
       if (r.ok) {
         r.json().then((collection) => {
           console.log(collection);
-          navigate(`/user/collections`);
+          if(!drafter) navigate(`/user/collections`);
+          else setReload(!reload)
         });
       } else {
         r.json().then((json) => setErrors(Object.entries(json.errors)));
@@ -38,7 +40,7 @@ function NewCollectionForm({ user }) {
 
   function goBack(e) {
     e.preventDefault();
-    navigate(`/user/collections`);
+    if(!drafter) navigate(`/user/collections`);
   }
 
   function handleChange(e) {
@@ -69,7 +71,8 @@ function NewCollectionForm({ user }) {
         <button type="submit">Create!</button>
       </form>
       <br />
-      <button onClick={(e) => goBack(e)}>Discard Collection</button>
+      {drafter? null
+      : <button onClick={(e) => goBack(e)}>Discard Collection</button>}
       </div>
       : <div>Please login to create a collection</div>}
       

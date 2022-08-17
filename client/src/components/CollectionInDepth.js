@@ -23,13 +23,14 @@ function CollectionInDepth() {
   function condenseCards() {
     let interim = [];
     cards.forEach((element) => {
-      let allMatches = cards.filter(card => card.info === element.info);
+      let allMatches = cards.filter(card => JSON.stringify(card.info) === JSON.stringify(element.info));
       let cardObj = {
         count: allMatches.length,
         printing: element,
       };
       interim.push(cardObj);
     });
+
     return interim;
   }
 /////refactor
@@ -47,13 +48,13 @@ function CollectionInDepth() {
   function handleSearchByType(e){
     console.log(e.target.value)
     e.preventDefault()
-    let toSet = condensedCollection.filter(card => card.printing.info.name.toLowerCase().includes(e.target.value.toLowerCase()))
+    let toSet = condensedCollection.filter(card => card.printing.info.type.toLowerCase().includes(e.target.value.toLowerCase()))
     setDisplayedCards(toSet)
   }
-  function handleSearchByColor(e){
+  function handleSearchByManaCost(e){
     console.log(e.target.value)
     e.preventDefault()
-    let toSet = condensedCollection.filter(card => card.printing.info.name.toLowerCase().includes(e.target.value.toLowerCase()))
+    let toSet = condensedCollection.filter(card => card.printing.info.manaCost.toLowerCase().includes(e.target.value.toLowerCase()))
     setDisplayedCards(toSet)
   }
 ////refactor
@@ -63,6 +64,9 @@ function CollectionInDepth() {
       <button>
         <Link to="/decks/new" state={{collection: {collection}}}>New Deck</Link>
       </button>
+      <button>
+        <Link to="/user/decks" state={{collection: {collection}}}>Decks Associated with this Collection</Link>
+      </button>
       <br />
       <FormControl>
         <InputLabel
@@ -71,8 +75,8 @@ function CollectionInDepth() {
       </FormControl>
       <FormControl>
         <InputLabel
-        >Search by color</InputLabel>
-        <Input onChange={handleSearchByColor}/>
+        >Search by color </InputLabel>
+        <Input onChange={handleSearchByManaCost}/>
       </FormControl>
       <FormControl>
         <InputLabel

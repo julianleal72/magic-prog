@@ -4,4 +4,5 @@ class Collection < ApplicationRecord
     has_many :decks
 
     validates :user_id, :title, presence: true
+    validates :title, uniqueness: true
 end

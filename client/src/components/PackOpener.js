@@ -38,7 +38,7 @@ function PackOpener() {
     packs.forEach((pack) => {
       pack.forEach((card) => {
         let newCard = {
-          collection_id: 4,
+          collection_id: location.state.collection.collection,
           info: card,
         };
         fetch("/cards", {
@@ -72,9 +72,9 @@ function PackOpener() {
     // }
   }
   function handleOpenAll() {
-    openedPacks.push(packs.slice(index, packs.length));
-    setOpenedAll(true);
-    setIndex(location.state.numPacks.numPacks);
+    // openedPacks.push(packs.slice(index, packs.length));
+    // setOpenedAll(true);
+    // setIndex(location.state.numPacks.numPacks);
   }
   function handleDiscard(){
     navigate("/drafter")
@@ -88,11 +88,12 @@ function PackOpener() {
   return (
     <div>
       <div>
-        {opened ? (
-          index >= packs.length - 1 ? null : (
+        {/* {opened ? (
+          index >= packs.length - 1 ? null : ( */}
             <button onClick={handleNext}>Next Pack</button>
-          )
-        ) : openedAll ? null : (
+          {/* ) */}
+         {/* ) :  */}
+        {openedAll ? null : (
           <button onClick={handleOpen}>Open Pack</button>
         )}
       </div>
@@ -101,14 +102,14 @@ function PackOpener() {
         Packs Left: {location.state.numPacks.numPacks - index}/
         {location.state.numPacks.numPacks}
       </h5>
-      {index > packs.length - 1 ? (
+      {/* {index > packs.length - 1 ? ( */}
         <div>
           <button onClick={handleCommit}>Add to Collection</button>
           <button onClick={goagain}>Re-Do Draft</button>
         </div>
-      ) : (
+      {/* ) : (
         <button onClick={handleOpenAll}>Open All Remaining</button>
-      )}
+      )} */}
       <div><button onClick={handleDiscard}>Discard Draft</button></div>
       <div>
         {openedPacks.map((pack) => (

@@ -10,8 +10,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
+import NewCollectionForm from "./NewCollectionForm.js"
 
-function SetTile({ set }) {
+function SetTile({ set, user }) {
   const marks = [
     { value: 3, label: "Booster Draft" },
     { value: 6, label: "Sealed Pool" },
@@ -19,10 +20,17 @@ function SetTile({ set }) {
     { value: 36, label: "Booster Box" },
   ];
   const [numPacks, setNumPacks] = useState(3);
+  const [collection, setCollection] = useState(user.collections[0])
   function handleSlide(e) {
     setNumPacks(e.target.value);
     console.log(e.target.value);
   }
+
+  function handleChange(e){
+    setCollection(e.target.value)
+    console.log(collection)
+  }
+
 
   return (
     <div>
@@ -37,6 +45,19 @@ function SetTile({ set }) {
           subheader={`Released ${set.release}`}
         />
       </Card>
+      <div>
+        <label>Collection to add to:</label>
+      <select onChange={handleChange}>
+      {user.collections.map((collection) => (
+          <option key={collection.id} value={collection.id}>
+            {collection.title}
+          </option>
+        ))}
+      </select>
+      <br />
+      <label>Or, Create a New Collection</label>
+        <NewCollectionForm user={user} drafter ={true}></NewCollectionForm>
+      </div>
       <Box sx={{ width: 700 }}>
       <Typography id="input-slider" gutterBottom>
         Number of Packs
@@ -54,7 +75,7 @@ function SetTile({ set }) {
         <h5>{numPacks}</h5>
       </Box>
       <Button>
-        <Link to="/packopener" state={{numPacks: {numPacks}, set: {set}}}>Draft!</Link>
+        <Link to="/packopener" state={{numPacks: {numPacks}, set: {set}, collection: {collection}}}>Draft!</Link>
       </Button>
     </div>
   );

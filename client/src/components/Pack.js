@@ -5,7 +5,9 @@ function Pack({ pack }) {
   return (
     <ImageList
       sx={{ width: 1000, height: 1200 }}
-      cols={ Math.floor(pack.length/3) }
+      cols={ 3
+        //Math.floor(pack.length/3) 
+      }
       rowHeight={200}
     >
       {pack.map((card) => (
