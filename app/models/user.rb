@@ -1,8 +1,7 @@
 class User < ApplicationRecord
     has_many :collections
-    # has_many :decks
     has_many :cards, through: :collections
-
+    has_many :decks, through: :collections
     has_secure_password
     
     validates :username, :password, presence: true

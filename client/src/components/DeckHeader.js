@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
-function NewDeck({ user }) {
+function DeckHeader({ user, meth }) {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState([]);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   useEffect(() => {
+    console.log(location.state.collection.id)
     let starterFormData = {
-      use_id: user.id,
+      collection_id: location.state.collection.id,
       name: "",
-      format: "Freeform",
+      format: (meth === "POST" ? "Freeform" : ""),
       description: "",
     };
     setFormData(starterFormData);
@@ -15,8 +20,9 @@ function NewDeck({ user }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setErrors([]);
     fetch("/decks", {
-      method: "POST",
+      method: `${meth}`,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -26,7 +32,7 @@ function NewDeck({ user }) {
       if (r.ok) {
         r.json().then((deck) => {
           console.log(deck);
-          //navigate
+          navigate("/decks/edit/:id", {state: {deck: formData, collection: location.state.collection}});
         });
       } else {
         r.json().then((json) => setErrors(Object.entries(json.errors)));
@@ -57,12 +63,11 @@ function NewDeck({ user }) {
           <option value="Progression">Progression</option>
         </select>
         <label>Description:</label>
-        <textarea
-          name="description"
-          onChange={handleChange}/>
+        <textarea name="description" onChange={handleChange} />
+        <button>Create Deck!</button>
       </form>
     </div>
   );
 }
 
-export default NewDeck;
+export default DeckHeader;

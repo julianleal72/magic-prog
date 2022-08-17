@@ -38,7 +38,7 @@ function NewCollectionForm({ user }) {
 
   function goBack(e) {
     e.preventDefault();
-    navigate(`/user/recipes`);
+    navigate(`/user/collections`);
   }
 
   function handleChange(e) {

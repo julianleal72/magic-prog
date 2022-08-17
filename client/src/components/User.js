@@ -62,6 +62,9 @@ function User( { user, deleteUser } ) {
                 <Box sx={{ p: 1 }}>
                 <Button><Link to={`/user/collections`} className="button">My Collections</Link></Button>
                 </Box>
+                <Box sx={{ p: 1 }}>
+                <Button><Link to={`/user/decks`} className="button">My Decks</Link></Button>
+                </Box>
                 <MyButton onClick={deleteAlert}>
                         Delete user
                 </MyButton>

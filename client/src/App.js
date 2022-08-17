@@ -11,28 +11,15 @@ import UserEditForm from "./components/UserEditForm";
 import Home from "./components/Home";
 import UserCollections from "./components/UserCollections.js"
 import NewCollectionForm from "./components/NewCollectionForm.js";
-import CollectionInDepth from "./components/CollectionInDepth";
-//import { makeObservable, observable, computed, action, flow } from "mobx"
+import CollectionInDepth from "./components/CollectionInDepth.js";
+import NewDeck from "./components/DeckHeader.js";
+import DeckEdit from "./components/DeckEdit";
+import { UserProvider } from "./context/user";
+import DeckHeader from "./components/DeckHeader.js";
+import UserDecks from "./components/UserDecks.js"
 
-// class UserStore{
-
-//   id = 0;
-//   username = "";
-//   bio = "";
-
-//   constructor(){
-//     makeObservable(this,{
-//       id: observable,
-//       username: observable,
-//       bio: observable//,
-//       //avatar: observable
-//     })
-//   }
-// }
-// const App = observer(({user}) => {
 function App() {
   const navigate = useNavigate();
-  //const userStore = new UserStore();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -70,6 +57,7 @@ function App() {
 
   return (
     <div className="App">
+      <UserProvider>
       <Header user={user} onLogout={handleLogout} />
       {user ? <UserNav /> : null}
       <Routes>
@@ -83,8 +71,11 @@ function App() {
         <Route path="/user/collections" element={<UserCollections user={user}/>}/>
         <Route path="/collections/new" element={<NewCollectionForm user={user}/>}/>
         <Route path="/user/collections/:id" element={<CollectionInDepth/>}/>
-        <Route path="/decks/new" element={<NewDeck user={user}/>}/>
+        <Route path="/decks/new" element={<DeckHeader user={user} meth={"POST"}/>}/>
+        <Route path="/decks/edit/:id" element={<DeckEdit user={user}/>}/>
+        <Route path="/user/decks" element={<UserDecks user={user}/>}/>
       </Routes>
+      </UserProvider>
     </div>
   );
 }
