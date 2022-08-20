@@ -4,24 +4,33 @@ import Collection from "./Collection";
 
 function UserCollections({user}){
     const [collections, setCollections] = useState([]);
+    const [reload, setReload] = useState(false)
 
     useEffect(() => {
-      async function goGetEm(){
-        await fetch(`/users/${user.id}`)
-        .then((r) => r.json())
-        .then((r) => {
-          setCollections(r.collections);
-          console.log(r);
-        })}
+      console.log()
         goGetEm();
-    }, [user.id]);
+    }, [reload])
+
+    function goGetEm(){
+      console.log("fetching")
+      fetch(`/users/${user.id}`)
+      .then((r) => r.json())
+      .then((r) => {
+        setCollections(r.collections);
+        console.log(r)
+      })}
+
+    function handleReload(){
+      console.log("triggered")
+      setReload(!reload)
+    }
 
     return(
         <div>
             <button><Link to="/collections/new">New Collection</Link></button>
             {collections.length > 0 ? 
             <div>
-            {user.collections.map((collection) => <Collection collection={collection} user={user}/>
+            {collections.map((collection) => <Collection collection={collection} user={user} reload={handleReload}/>
             )}
             </div>
             : "You have no collections! Try creating one."}

@@ -17,6 +17,7 @@ function PackOpener() {
   useEffect(() => {
     console.log(location.state.numPacks.numPacks);
     console.log(location.state.set.set.name);
+    console.log(location.state.collection.collection)
     let i = 1;
     while (i <= location.state.numPacks.numPacks) {
       getPack(location.state.set.set.code);
@@ -37,10 +38,12 @@ function PackOpener() {
   function handleCommit() {
     packs.forEach((pack) => {
       pack.forEach((card) => {
+        
         let newCard = {
           collection_id: location.state.collection.collection,
           info: card,
         };
+        console.log(newCard)
         fetch("/cards", {
           method: "POST",
           headers: {
@@ -58,18 +61,19 @@ function PackOpener() {
   }
 
   function handleOpen() {
-    // if (!opened) {
-    setOpened(!opened)
+    if (!opened) {
+    setOpened(true)
     console.log(index);
+    console.log(packs.length)
     setOpenedPacks([...openedPacks, packs[index]]);
-    setIndex(index + 1);
-    // }
+    if(index < packs.length-1) setIndex(index + 1);
+    }
   }
   function handleNext() {
-    // if (opened) {
+    if (opened) {
     console.log(index);
-    setOpened(!opened);
-    // }
+    setOpened(false);
+    }
   }
   function handleOpenAll() {
     // openedPacks.push(packs.slice(index, packs.length));
@@ -80,7 +84,7 @@ function PackOpener() {
     navigate("/drafter")
   }
   function goagain(){
-    setGoAgain(!goAgain)
+    setGoAgain(true)
   }
 
   //don't display dupes and just display how many copies
@@ -88,11 +92,8 @@ function PackOpener() {
   return (
     <div>
       <div>
-        {/* {opened ? (
-          index >= packs.length - 1 ? null : ( */}
-            <button onClick={handleNext}>Next Pack</button>
-          {/* ) */}
-         {/* ) :  */}
+        {opened ? 
+            <button onClick={handleNext}>Next Pack</button> : null}
         {openedAll ? null : (
           <button onClick={handleOpen}>Open Pack</button>
         )}

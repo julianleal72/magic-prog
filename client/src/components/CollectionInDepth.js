@@ -16,9 +16,12 @@ function CollectionInDepth() {
   const [displayedCards, setDisplayedCards] = useState([]);
   
   useEffect(() => {
-    setCondensedCollection(condenseCards());
-    setDisplayedCards(condenseCards())
-  }, []);
+    let yeet = condenseCards()
+    console.log(yeet)
+    let newSet = [...new Set(condenseCards())];
+    setCondensedCollection(newSet);
+    setDisplayedCards(newSet)
+  }, [])
 
   function condenseCards() {
     let interim = [];
@@ -40,9 +43,13 @@ function CollectionInDepth() {
     setDisplayedCards(toSet)
   }
   function handleSearchByText(e){
-    console.log(e.target.value)
     e.preventDefault()
-    let toSet = condensedCollection.filter(card => card.printing.info.text.toLowerCase().includes(e.target.value.toLowerCase()))
+    let toSet = condensedCollection.filter(card => {
+      if('text' in card.printing.info) {
+      card.printing.info.text.toLowerCase().includes(e.target.value.toLowerCase())
+      }
+      else return false
+    })
     setDisplayedCards(toSet)
   };
   function handleSearchByType(e){
@@ -62,7 +69,7 @@ function CollectionInDepth() {
     <div>
       <br />
       <button>
-        <Link to="/decks/new" state={{collection: {collection}}}>New Deck</Link>
+        <Link to="/decks/newC" state={{collection: {collection}}}>New Deck</Link>
       </button>
       <button>
         <Link to="/user/decks" state={{collection: {collection}}}>Decks Associated with this Collection</Link>
@@ -73,21 +80,21 @@ function CollectionInDepth() {
         >Search by card name</InputLabel>
         <Input name ="name" onChange={handleSearchByName}/>
       </FormControl>
-      <FormControl>
+      {/* <FormControl>
         <InputLabel
         >Search by color </InputLabel>
         <Input onChange={handleSearchByManaCost}/>
-      </FormControl>
+      </FormControl> */}
       <FormControl>
         <InputLabel
         >Search by card/creature type</InputLabel>
         <Input name = "type" onChange={handleSearchByType}/>
       </FormControl>
-      <FormControl>
+      {/* <FormControl>
         <InputLabel
         >Search by card text</InputLabel>
         <Input name = "text" onChange={handleSearchByText}/>
-      </FormControl>
+      </FormControl> */}
       <br />
       <br />
       <Box sx={{ flexGrow: 1 }}>

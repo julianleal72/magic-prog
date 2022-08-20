@@ -1,5 +1,5 @@
 class DecksController < ApplicationController
-
+    require 'pry'
     def index
         render json: Deck.all, status: :ok
     end
@@ -15,6 +15,7 @@ class DecksController < ApplicationController
     end
     def update
         deck = Deck.find(params[:id])
+        #binding.pry
         deck.update!(deck_params)
         render json: deck, status: :ok
     end
@@ -27,6 +28,6 @@ class DecksController < ApplicationController
     private
 
     def deck_params
-        params.permit(:collection_id, :name, :description, :format, :card_id)
+        params.permit(:collection_id, :name, :description, :format, :icon, cards: {})
     end
 end

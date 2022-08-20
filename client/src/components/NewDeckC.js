@@ -1,17 +1,21 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-function DeckHeader({ user, setShowHeader}) {
+function NewDeckC({ user }) {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState([]);
   const location = useLocation();
-  const deck = location.state.deck.deck
-  console.log(deck)
   const navigate = useNavigate();
-
+  const collection = location.state.collection
 
   useEffect(() => {
-    let starterFormData = deck
+    let starterFormData = {
+      collection_id: location.state.collection.collection.id,
+      name: "",
+      format: "Freeform",
+      description: "",
+      cards: {"array": []}
+    };
     console.log(starterFormData)
     setFormData(starterFormData);
   }, []);
@@ -19,8 +23,8 @@ function DeckHeader({ user, setShowHeader}) {
   function handleSubmit(e) {
     e.preventDefault();
     setErrors([]);
-    fetch(`/decks/${deck.id}`, {
-      method: 'PATCH',
+    fetch("/decks", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -28,9 +32,9 @@ function DeckHeader({ user, setShowHeader}) {
       body: JSON.stringify(formData),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((deck) => {
-          console.log(deck);
-          setShowHeader(false)
+        r.json().then((d) => {
+          console.log(d);
+          navigate("/user/decks");
         });
       } else {
         r.json().then((json) => setErrors(Object.entries(json.errors)));
@@ -44,6 +48,8 @@ function DeckHeader({ user, setShowHeader}) {
       value = parseInt(value)
     }
     setFormData({ ...formData, [name]: value });
+    console.log(value)
+    console.log(formData)
   }
 
   return (
@@ -66,10 +72,19 @@ function DeckHeader({ user, setShowHeader}) {
         </select>
         <label>Description:</label>
         <textarea name="description" value={formData.description}onChange={handleChange} />
-        <button>Update Deck Details</button>
+        {/* <div>
+        <label>Collection to add to:</label>
+        <select onChange={handleChange} name="collection_id">
+          {user.collections.map((collection) => (
+            <option key={collection.id} value={collection.id}>
+              {collection.title}
+            </option>
+          ))}
+        </select></div> */}
+        <button>Create Deck!</button>
       </form>
     </div>
   );
 }
 
-export default DeckHeader;
+export default NewDeckC;

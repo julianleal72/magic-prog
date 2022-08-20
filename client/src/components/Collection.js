@@ -11,10 +11,20 @@ import ImageListItem from "@mui/material/ImageListItem";
 import {Link} from 'react-router-dom'
 import {useState} from 'react'
 
-function Collection({ collection, user }) {
+function Collection({ collection, user, reload }) {
     const [cards, setCards] = useState(user.cards.filter(card => card.collection_id === collection.id))
     console.log(collection);
     console.log(cards)
+
+    function handleDelete(){
+      fetch(`/collections/${collection.id}`, {
+          method: 'DELETE',
+          headers: {'Content-Type': 'application/json'},
+      }).then(r=>r.json()).then(r => {console.log(r)
+      reload()
+      })
+  }
+
     return (
     <Cardraised
       sx={{
@@ -34,6 +44,7 @@ function Collection({ collection, user }) {
         {collection.title} - {collection.description}
       </CardContent>
       <button><Link to="/user/collections/:id" state={{collection: {collection}, cards: {cards}}}>Manage Collection</Link></button>
+      <button onClick = {handleDelete}>Delete Collection</button>
     </Cardraised>
   );
 }

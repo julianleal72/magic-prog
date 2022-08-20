@@ -13,22 +13,28 @@ import Button from '@mui/material/Button';
 import Card from "@mui/material/Card";
 
 function DeckEditTile({ card, deck, handleAddCard, handleRemoveCard }) {
-  
   const [numInDeck, setNumInDeck] = useState(0)
+  console.log(card)
+  console.log(deck)
+  //howManyInDeck()
+  function howManyInDeck(){
+    console.log(deck.cards.array.find((element) => JSON.stringify(element) === JSON.stringify(card)))
+  }
 
   function handleAdd(){
     console.log(card)
     if(numInDeck < card.count && numInDeck < 4)
     {setNumInDeck(numInDeck + 1)
-    handleAddCard(card)}
+    handleAddCard(card, card.count)}
   }
+
   function handleSubtract(){
     console.log(card)
     if(numInDeck > 0)
     {setNumInDeck(numInDeck - 1)
     handleRemoveCard(card)}
   }
-  
+
   return (
     <Cardraised
       sx={{

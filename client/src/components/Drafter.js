@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SetTile from "./SetTile.js";
+import SetTile from "./SetTile.js"
 
 function Drafter({user}) {
   let setArr =[]
@@ -22,7 +22,7 @@ function Drafter({user}) {
     fetch(`https://api.magicthegathering.io/v1/sets?page=${count}`)
       .then((r) => r.json())
       .then((r) => {
-        let setArr = [];
+        let setArr = []
         r.sets.forEach((element) => {
           if (element.booster) {
             //sort by 3 character set code, sort by online, sort by product type (expansion, masters, supplemental, etc)
@@ -30,7 +30,7 @@ function Drafter({user}) {
               name: element.name,
               code: element.code,
               release: element.releaseDate,
-            });
+            })
           }
         });
         if (count === 1) setSets1(setArr);
@@ -50,7 +50,7 @@ function Drafter({user}) {
   }
   function handleSort(filter) {
     // console.log(filter)
-    let toSet = [...sets];
+    let toSet = [...sets]
     if (filter === "code") {
       toSet.sort((a, b) => (a.code > b.code ? 1 : -1))
     }
@@ -91,5 +91,5 @@ function Drafter({user}) {
   )
 }
 
-export default Drafter;
+export default Drafter
 

@@ -8,20 +8,27 @@ function UserDecks({ user }) {
   const location = useLocation();
   const [collection, setCollection] = useState({}
   );
+  const [reload, setReload] = useState(false)
 
   useEffect(() => {
     if (location.state) {
       collectionDecks();
     } else goGetEm();
-  }, [user.id]);
+  }, [reload]);
 
   function goGetEm() {
+    console.log("fetching")
     fetch(`/users/${user.id}`)
       .then((r) => r.json())
       .then((r) => {
         setDecks(r.decks);
         console.log(r);
-      });
+      })
+  }
+
+  function handleReload(){
+    console.log("triggered")
+    setReload(!reload)
   }
 
   function collectionDecks() {
@@ -35,15 +42,15 @@ function UserDecks({ user }) {
 
   return (
     <div>
-      <button>
+      {/* <button>
         <Link to="/decks/new" state={{ collection: { collection } }}>
           New Deck
         </Link>
-      </button>
+      </button> */}
       {decks.length > 0 ? (
         <div>
           {decks.map((deck) => (
-            <Deck deck={deck} user={user} />
+            <Deck deck={deck} user={user} reload={handleReload} collection={collection}/>
           ))}
         </div>
       ) : (

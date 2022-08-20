@@ -13,6 +13,7 @@ import Slider from "@mui/material/Slider";
 import NewCollectionForm from "./NewCollectionForm.js"
 
 function SetTile({ set, user }) {
+  const [newCollection, setNewCollection] = useState(false)
   const marks = [
     { value: 3, label: "Booster Draft" },
     { value: 6, label: "Sealed Pool" },
@@ -20,7 +21,10 @@ function SetTile({ set, user }) {
     { value: 36, label: "Booster Box" },
   ];
   const [numPacks, setNumPacks] = useState(3);
-  const [collection, setCollection] = useState(user.collections[0])
+  const [collection, setCollection] = useState(parseInt(user.collections[0].id))
+
+  console.log(collection)
+
   function handleSlide(e) {
     setNumPacks(e.target.value);
     console.log(e.target.value);
@@ -30,7 +34,9 @@ function SetTile({ set, user }) {
     setCollection(e.target.value)
     console.log(collection)
   }
-
+  function handleNC() {
+    setNewCollection(true)
+  }
 
   return (
     <div>
@@ -46,6 +52,7 @@ function SetTile({ set, user }) {
         />
       </Card>
       <div>
+      {newCollection ? null : <div>
         <label>Collection to add to:</label>
       <select onChange={handleChange}>
       {user.collections.map((collection) => (
@@ -53,10 +60,9 @@ function SetTile({ set, user }) {
             {collection.title}
           </option>
         ))}
-      </select>
+      </select></div>}
       <br />
-      <label>Or, Create a New Collection</label>
-        <NewCollectionForm user={user} drafter ={true}></NewCollectionForm>
+      {newCollection ? <NewCollectionForm user={user} drafter ={true}></NewCollectionForm> : <button onClick={handleNC}>Or, Create a New Collection</button>}
       </div>
       <Box sx={{ width: 700 }}>
       <Typography id="input-slider" gutterBottom>

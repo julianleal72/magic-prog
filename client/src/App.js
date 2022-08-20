@@ -16,6 +16,7 @@ import DeckEdit from "./components/DeckEdit";
 import { UserProvider } from "./context/user";
 import DeckHeader from "./components/DeckHeader.js";
 import UserDecks from "./components/UserDecks.js"
+import NewDeckC from "./components/NewDeckC";
 
 function App() {
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ function App() {
         <Route path="/collections/new" element={<NewCollectionForm user={user} drafter={false}/>}/>
         <Route path="/user/collections/:id" element={<CollectionInDepth/>}/>
         <Route path="/decks/new" element={<DeckHeader user={user} meth={"POST"}/>}/>
+        <Route path="/decks/newC" element={<NewDeckC user={user}/>}/>
         <Route path="/decks/edit/:id" element={<DeckEdit user={user}/>}/>
         <Route path="/user/decks" element={<UserDecks user={user}/>}/>
       </Routes>
