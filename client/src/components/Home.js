@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom"
 
-function Home(){
-    return <div><button><Link to="/drafter">Draft!</Link></button></div>
+function Home({user}){
+    return <div>{user ? <button><Link to="/drafter">Draft!</Link></button>:null}</div>
 }
 
 export default Home;

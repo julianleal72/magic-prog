@@ -63,7 +63,7 @@ function App() {
       <UserProvider>
       <UserNav user={user} onLogout={handleLogout}/>
       <Routes>
-        <Route exact path="/" element={<Home/>} />
+        <Route exact path="/" element={<Home user={user}/>} />
         <Route path="/drafter" element={<Drafter user={user}/>} />
         <Route path="/packopener" element={<PackOpener/>}/>
         <Route path="/login" element={<Login onLogin={handleLogin} />} />

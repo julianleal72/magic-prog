@@ -34,7 +34,13 @@ function CollectionInDepth() {
       interim.push(cardObj);
     });
 
-    return interim;
+    let unique = [];
+    interim.forEach((x) => {
+      if(!unique.find((y) => JSON.stringify(x.printing.info) === JSON.stringify(y.printing.info))) unique.push(x)
+      })
+    console.log(unique);
+
+    return unique;
   }
 /////refactor
   function handleSearchByName(e){
@@ -46,7 +52,7 @@ function CollectionInDepth() {
     e.preventDefault()
     let toSet = condensedCollection.filter(card => {
       if('text' in card.printing.info) {
-      card.printing.info.text.toLowerCase().includes(e.target.value.toLowerCase())
+      return card.printing.info.text.toLowerCase().includes(e.target.value.toLowerCase())
       }
       else return false
     })

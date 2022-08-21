@@ -23,6 +23,9 @@ class UsersController < ApplicationController
     
     def destroy
         user = User.find(params[:id])
+        user.decks.destroy_all
+        user.collections.destroy_all
+        user.cards.destroy_all
         user.destroy
         render json: {message: "Deleted"}, status: :ok
     end

@@ -12,13 +12,16 @@ import {useState} from 'react'
 import Button from '@mui/material/Button';
 import Card from "@mui/material/Card";
 
-function DeckEditTile({ card, deck, handleAddCard, handleRemoveCard }) {
-  const [numInDeck, setNumInDeck] = useState(0)
-  console.log(card)
-  console.log(deck)
-  //howManyInDeck()
+function DeckEditTile({ card, deck, handleAddCard, handleRemoveCard, deckContents }) {
+  const [numInDeck, setNumInDeck] = useState(howManyInDeck())
+  //console.log(card)
+  //console.log(deck)
+  //console.log(deckContents)
+  console.log(numInDeck)
   function howManyInDeck(){
-    console.log(deck.cards.array.find((element) => JSON.stringify(element) === JSON.stringify(card)))
+    let x = deckContents.find((element) => JSON.stringify(element) === JSON.stringify(card))
+    if (x) return x.count
+    else return 0
   }
 
   function handleAdd(){

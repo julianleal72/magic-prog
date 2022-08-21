@@ -62,7 +62,7 @@ function SetTile({ set, user }) {
         ))}
       </select></div>}
       <br />
-      {newCollection ? <NewCollectionForm user={user} drafter ={true}></NewCollectionForm> : <button onClick={handleNC}>Or, Create a New Collection</button>}
+      {newCollection ? <NewCollectionForm user={user} drafter ={true}></NewCollectionForm> : <button onClick={handleNC}>Create a New Collection</button>}
       </div>
       <Box sx={{ width: 700 }}>
       <Typography id="input-slider" gutterBottom>

@@ -32,7 +32,7 @@ function DeckEdit({ user }) {
   }
 
   function condenseCards(collec) {
-    let interm = [];
+    let interim = [];
     collec.forEach((element) => {
       let allMatches = collec.filter(
         (card) => JSON.stringify(card.info) === JSON.stringify(element.info)
@@ -41,9 +41,16 @@ function DeckEdit({ user }) {
         count: allMatches.length,
         printing: element,
       };
-      interm.push(cardObj);
+      interim.push(cardObj);
     });
-    return interm;
+
+    let unique = [];
+    interim.forEach((x) => {
+      if(!unique.find((y) => JSON.stringify(x.printing.info) === JSON.stringify(y.printing.info))) unique.push(x)
+      })
+    console.log(unique);
+
+    return unique;
   }
 
   function handleShowHeader() {
@@ -85,6 +92,7 @@ function DeckEdit({ user }) {
       if (r.ok) {
         r.json().then(deck => {
           console.log(deck);
+          alert("Deck Saved, Kiddo")
         }
     )} else {
         r.json().then((json) => setErrors(Object.entries(json.errors)));
@@ -170,6 +178,7 @@ function DeckEdit({ user }) {
               key={card.printing.name}
               card={card}
               deck={deck}
+              deckContents={deckContents}
               handleAddCard={handleAddCard}
               handleRemoveCard={handleRemoveCard}
             />
