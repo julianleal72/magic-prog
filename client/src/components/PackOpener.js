@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import OpenedPacks from "./OpenedPacks.js";
 import Pack from "./Pack.js";
 
 function PackOpener() {
@@ -9,7 +10,6 @@ function PackOpener() {
   const [goAgain, setGoAgain] = useState(false);
   const [errors, setErrors] = useState([]);
   const [packs, setPacks] = useState([]);
-  const [index, setIndex] = useState(0);
   const [openedAll, setOpenedAll] = useState(false);
   const [opened, setOpened] = useState(false);
   const [openedPacks, setOpenedPacks] = useState([]);
@@ -23,7 +23,7 @@ function PackOpener() {
       getPack(location.state.set.set.code);
       i++;
     }
-  }, [goAgain]);
+  }, []);
 
   function getPack(code) {
     fetch(`https://api.magicthegathering.io/v1/sets/${code}/booster`)
@@ -64,51 +64,63 @@ function PackOpener() {
   }
 
   function handleOpen() {
+    console.log(packs)
     if (!opened) {
       setOpened(true);
-      console.log(index);
-      console.log(packs.length);
-      setOpenedPacks([...openedPacks, packs[index]]);
-      if (index < packs.length - 1) setIndex(index + 1);
-      else setOpenedAll(true)
+      setOpenedPacks([...openedPacks, packs[0]]);
     }
+    if (packs.length===1) setOpenedAll(true)
+    console.log(openedPacks)
   }
   function handleNext() {
+    let temp = [...packs]
     if (opened) {
-      console.log(index);
+      temp.shift()
+      //console.log(temp)
+      setPacks([...temp])
       setOpened(false);
     }
   }
-  // function handleOpenAll() {
-  //   openedPacks.push(packs.slice(index, packs.length));
-  //   setOpenedAll(true);
-  //   setIndex(location.state.numPacks.numPacks);
-  // }
+
   function handleDiscard() {
     navigate("/drafter");
   }
   function goagain() {
-    setGoAgain(true);
+    // setOpened([])
+    // setPacks([])
+    // setOpened(false)
+    // setOpenedAll(false)
+    //setGoAgain(true);
+    window.location.reload(false)
   }
 
+  function condense(){
+    let jesus = []
+    console.log(openedPacks)
+    openedPacks.forEach(element => {
+      jesus = jesus.concat(element)
+    });
+    console.log(jesus)
+    return jesus
+  }
   //don't display dupes and just display how many copies
 
   return (
     <div>
       <div>
-        {opened ? <button onClick={handleNext}>Next Pack</button> : null}
-        {opened ? null : <button onClick={handleOpen}>Open Pack</button>}
-      </div>
-      {opened ? <Pack pack={packs[index]} /> : null}
-      <h5>
-        Packs Left: {location.state.numPacks.numPacks - index}/
-        {location.state.numPacks.numPacks}
-      </h5>
-      {/* {index > packs.length - 1 ? ( */}
       {openedAll ? <div>
         <button onClick={handleCommit}>Add to Collection</button>
-        <button onClick={goagain}>Re-Do Draft</button>
+        <button onClick={goagain}>Draft Again</button>
       </div> : null}
+        {openedAll ? null: <div>{opened ? <button onClick={handleNext}>Next Pack</button> : null}
+       {opened ? null : <button onClick={handleOpen}>Open Pack</button>}</div>}
+      </div>
+      {opened ? <Pack pack={packs[0]} /> : null}
+      <h5>
+        Packs Left: {location.state.numPacks.numPacks - openedPacks.length}/
+        {location.state.numPacks.numPacks}
+      </h5>
+
       {/* ) : (
         <button onClick={handleOpenAll}>Open All Remaining</button>
       )} */}
@@ -116,9 +128,7 @@ function PackOpener() {
         <button onClick={handleDiscard}>Discard Draft</button>
       </div>
       <div>
-        {openedPacks.map((pack) => (
-          <Pack pack={pack} />
-        ))}
+
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { FormControl, Input, InputLabel, FormHelperText } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar.js";
 
 function CollectionInDepth() {
   const location = useLocation();
@@ -16,11 +17,8 @@ function CollectionInDepth() {
   const [displayedCards, setDisplayedCards] = useState([]);
   
   useEffect(() => {
-    let yeet = condenseCards()
-    console.log(yeet)
-    let newSet = [...new Set(condenseCards())];
-    setCondensedCollection(newSet);
-    setDisplayedCards(newSet)
+    setCondensedCollection(condenseCards());
+    setDisplayedCards(condenseCards())
   }, [])
 
   function condenseCards() {
@@ -42,35 +40,7 @@ function CollectionInDepth() {
 
     return unique;
   }
-/////refactor
-  function handleSearchByName(e){
-    e.preventDefault()
-    let toSet = condensedCollection.filter(card => card.printing.info.name.toLowerCase().includes(e.target.value.toLowerCase()))
-    setDisplayedCards(toSet)
-  }
-  function handleSearchByText(e){
-    e.preventDefault()
-    let toSet = condensedCollection.filter(card => {
-      if('text' in card.printing.info) {
-      return card.printing.info.text.toLowerCase().includes(e.target.value.toLowerCase())
-      }
-      else return false
-    })
-    setDisplayedCards(toSet)
-  };
-  function handleSearchByType(e){
-    console.log(e.target.value)
-    e.preventDefault()
-    let toSet = condensedCollection.filter(card => card.printing.info.type.toLowerCase().includes(e.target.value.toLowerCase()))
-    setDisplayedCards(toSet)
-  }
-  function handleSearchByManaCost(e){
-    console.log(e.target.value)
-    e.preventDefault()
-    let toSet = condensedCollection.filter(card => card.printing.info.manaCost.toLowerCase().includes(e.target.value.toLowerCase()))
-    setDisplayedCards(toSet)
-  }
-////refactor
+
   return (
     <div>
       <br />
@@ -81,26 +51,7 @@ function CollectionInDepth() {
         <Link to="/user/decks" state={{collection: {collection}}}>Decks Associated with this Collection</Link>
       </button>
       <br />
-      <FormControl>
-        <InputLabel
-        >Search by card name</InputLabel>
-        <Input name ="name" onChange={handleSearchByName}/>
-      </FormControl>
-      {/* <FormControl>
-        <InputLabel
-        >Search by color </InputLabel>
-        <Input onChange={handleSearchByManaCost}/>
-      </FormControl> */}
-      <FormControl>
-        <InputLabel
-        >Search by card/creature type</InputLabel>
-        <Input name = "type" onChange={handleSearchByType}/>
-      </FormControl>
-      {/* <FormControl>
-        <InputLabel
-        >Search by card text</InputLabel>
-        <Input name = "text" onChange={handleSearchByText}/>
-      </FormControl> */}
+      <SearchBar condensedCollection={condensedCollection} setDisplayedCards={setDisplayedCards} displayedCards={displayedCards}/>
       <br />
       <br />
       <Box sx={{ flexGrow: 1 }}>
