@@ -69,7 +69,6 @@ function UserEditForm({ user, updateUser }) {
                 <button>Save</button>
             </form>
             {errors?errors.map(e => <h2 style={{color:'red'}}>{e.toUpperCase()}</h2>):null}
-            <button onClick = {e=>goBack(e)}>Back</button>
         </div>
     )
 }

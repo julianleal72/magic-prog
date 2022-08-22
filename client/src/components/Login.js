@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FormControl, Input, Button, } from "@mui/material"
 import { useNavigate, Link } from "react-router-dom";
+import './Login.css'
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -35,8 +36,8 @@ function Login({ onLogin }) {
 
   return (
     <div>
-    <form onSubmit={handleSubmit}>
-      <h3>Login With Username</h3>
+      <h3>Greetings, Planeswalker!</h3>
+      <form onSubmit={handleSubmit} className="form">
       <FormControl>
       <Input 
         placeholder="Username"
@@ -57,8 +58,8 @@ function Login({ onLogin }) {
       </Button>
     </FormControl>
       {errors?errors.map(e => <div key={e[0]}>{e[1]}</div>):null}
-    </form>
     <br />
+    </form>
     <div>Don't have an account? <Link to="/signup">Sign Up</Link> to get started!</div>
     </div>
   );

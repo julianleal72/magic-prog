@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FormControl, Input, Button, TextField } from "@mui/material";
+import { FormControl, Input, Button} from "@mui/material";
+import './Signup.css'
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -11,7 +12,7 @@ function SignUp() {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
-  const { username, password, bio } = formData;
+  const { username, password, bio, avatar } = formData;
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -35,6 +36,7 @@ function SignUp() {
       }
     });
     setFormData({
+      avatar: "",
       username: "",
       password: "",
       bio: "",
@@ -42,10 +44,17 @@ function SignUp() {
   }
 
   return (
-    <>
+    <div className="signup">
       <h2>Sign up</h2>
       <form onSubmit={handleSubmit}>
         <FormControl>
+        <Input
+            placeholder="Avatar"
+            type="text"
+            name="avatar"
+            value={avatar}
+            onChange={handleChange}
+          />
           <Input
             placeholder="Username"
             type="text"
@@ -80,7 +89,8 @@ function SignUp() {
             </div>
           ))
         : null}
-    </>
+      <Button onClick={() => navigate("/")}>Back</Button>
+    </div>
   );
 }
 
