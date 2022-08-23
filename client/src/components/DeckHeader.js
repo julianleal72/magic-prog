@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import {
+  FormControl,
+  InputLabel,
+  Button,
+  OutlinedInput,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import { GiStamper } from "react-icons/gi";
 
-function DeckHeader({ user, setShowHeader}) {
+function DeckHeader({ deck, setDeck, setShowHeader }) {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState([]);
-  const location = useLocation();
-  const deck = location.state.deck.deck
-  console.log(deck)
-  const navigate = useNavigate();
-
+  console.log(deck);
 
   useEffect(() => {
-    let starterFormData = deck
-    console.log(starterFormData)
+    let starterFormData = deck;
+    console.log(starterFormData);
     setFormData(starterFormData);
   }, []);
 
@@ -20,7 +25,7 @@ function DeckHeader({ user, setShowHeader}) {
     e.preventDefault();
     setErrors([]);
     fetch(`/decks/${deck.id}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -30,7 +35,8 @@ function DeckHeader({ user, setShowHeader}) {
       if (r.ok) {
         r.json().then((deck) => {
           console.log(deck);
-          setShowHeader(false)
+          setDeck(deck);
+          setShowHeader(false);
         });
       } else {
         r.json().then((json) => setErrors(Object.entries(json.errors)));
@@ -40,8 +46,8 @@ function DeckHeader({ user, setShowHeader}) {
 
   function handleChange(e) {
     let { value, name } = e.target;
-    if (name ==="collection_id") {
-      value = parseInt(value)
+    if (name === "collection_id") {
+      value = parseInt(value);
     }
     setFormData({ ...formData, [name]: value });
   }
@@ -49,33 +55,74 @@ function DeckHeader({ user, setShowHeader}) {
   return (
     <div>
       {errors ? errors.map((e) => <div key={e[0]}>{e[1]}</div>) : null}
-      <form onSubmit={handleSubmit}>
-        <label>Deck Icon:</label>
-        <input
-          type="text"
-          name="icon"
-          placeholder={"Deck Icon..."}
-          value={formData.icon}
-          onChange={handleChange}
-        />
-        <label>Deck Name:</label>
-        <input
-          type="text"
-          name="name"
-          placeholder={"Deck Name..."}
-          value={formData.name}
-          onChange={handleChange}
-        />
-        <label>Format:</label>
-        <select type="text" value = {formData.format} name="format" onChange={handleChange}>
-          <option value="Freeform">Freeform</option>
-          <option value="Eternal">Eternal</option>
-          <option value="Progression">Progression</option>
-        </select>
-        <label>Description:</label>
-        <textarea name="description" value={formData.description}onChange={handleChange} />
-        <button>Update Deck Details</button>
-      </form>
+      <FormControl sx={{ width: 370 }}>
+        <FormControl sx={{ padding: 0.8 }}>
+          <InputLabel>Deck Icon:</InputLabel>
+          <OutlinedInput
+            sx={{ padding: 0.5 }}
+            type="text"
+            name="icon"
+            label="Icon"
+            placeholder={"Deck Icon..."}
+            value={formData.icon}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl sx={{ padding: 0.8 }}>
+          <InputLabel>Deck Name:</InputLabel>
+          <OutlinedInput
+            sx={{ padding: 0.5 }}
+            type="text"
+            name="name"
+            label="Name"
+            placeholder={"Deck Name..."}
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl sx={{ padding: 0.8 }}>
+          <InputLabel>Format:</InputLabel>
+          <Select
+            type="text"
+            value={formData.format}
+            sx={{ padding: 0.5 }}
+            label="Format"
+            name="format"
+            onChange={handleChange}
+          >
+            <MenuItem sx={{ width: 150 }} value="Freeform">
+              Freeform
+            </MenuItem>
+            <MenuItem sx={{ width: 150 }} value="Eternal">
+              Eternal
+            </MenuItem>
+            <MenuItem sx={{ width: 150 }} value="Progression">
+              Progression
+            </MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl sx={{ padding: 0.8 }}>
+          <InputLabel>Description:</InputLabel>
+          <OutlinedInput
+            sx={{ padding: 0.5 }}
+            name="description"
+            minRows="3"
+            label="Description"
+            placeholder="Deck Description..."
+            multiline={true}
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<GiStamper />}
+          onClick={handleSubmit}
+        >
+          Update Deck Details
+        </Button>
+      </FormControl>
     </div>
   );
 }

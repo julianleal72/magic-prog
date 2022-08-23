@@ -8,6 +8,7 @@ import { FcPlus } from "react-icons/fc";
 import CollectionHeader from "./CollectionHeader.js";
 import { FiEdit3 } from "react-icons/fi";
 import { GiSpellBook } from "react-icons/gi";
+import './CollectionInDepth.css'
 
 function CollectionInDepth() {
   const location = useLocation();
@@ -59,7 +60,7 @@ function CollectionInDepth() {
   return (
     <div>
       <div className="buttonDiv">
-        <div className="decksButtonDiv">
+        <div className="deckButtonDiv">
           <Button variant="outlined" color="success" startIcon={<FcPlus />}>
             <Link to="/decks/newC" state={{ collection: { collection } }}>
               New Deck
@@ -87,6 +88,7 @@ function CollectionInDepth() {
           <CollectionHeader
             collection={collection}
             setShowHeader={setShowHeader}
+            setCollection={setCollection}
           />
         ) : null}
       </div>

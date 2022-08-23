@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, FormControl, OutlinedInput, InputLabel } from "@mui/material";
 import "./User.css";
+import {
+  GiPerspectiveDiceSixFacesSix,
+} from "react-icons/gi";
 
 function UserEditForm({ user, updateUser }) {
   const [errors, setErrors] = useState([]);
@@ -28,7 +31,7 @@ function UserEditForm({ user, updateUser }) {
     }).then((res) => {
       if (res.ok) {
         res.json().then(updateUser);
-        navigate("/");
+        navigate("/user");
       } else {
         res
           .json()
@@ -37,7 +40,6 @@ function UserEditForm({ user, updateUser }) {
           );
       }
     });
-    navigate(`/`);
   }
 
   function handleChange(e) {
@@ -56,11 +58,13 @@ function UserEditForm({ user, updateUser }) {
         <img src={formData.avatar} alt="avatar pic" className="avatar-pic" />
       ) : null}
       <br />
+      {errors
+        ? errors.map((e) => <h2 style={{ color: "red" }}>{e.toUpperCase()}</h2>)
+        : null}
       <FormControl  className="userEditForm">
-      <FormControl>
-        <InputLabel className="label">Avatar: </InputLabel>
-        <OutlinedInput
-        className="input"
+      <FormControl sx={{ padding: 0.8 }}>
+        <InputLabel>Avatar:</InputLabel>
+        <OutlinedInput sx={{ padding: 0.5 }}
           type="text"
           name="avatar"
           placeholder={avatar}
@@ -68,33 +72,34 @@ function UserEditForm({ user, updateUser }) {
           onChange={handleChange}
         />
     </FormControl>
-    <FormControl>
-        <InputLabel className="label" shrink={true}>Username: </InputLabel>
-        <OutlinedInput
-        className="input"
+    <FormControl sx={{ padding: 0.8 }}>
+        <InputLabel>Username:</InputLabel>
+        <OutlinedInput sx={{ padding: 0.5 }}
           type="text"
           name="username"
+          label="Username"
           placeholder={username}
           value={formData.username}
           onChange={handleChange}
         />
     </FormControl>
-    <FormControl>
-        <InputLabel className="label" shrink={true}>Password:</InputLabel>
-        <OutlinedInput
-        className="input"
+    <FormControl sx={{ padding: 0.8 }}>
+        <InputLabel>Password:</InputLabel>
+        <OutlinedInput sx={{ padding: 0.5 }}
           type="password"
           name="password"
+          label="P@s$w0Rd"
           placeholder={"Input your old password or choose a new one carefully"}
           value={formData.password}
           onChange={handleChange}
         />
     </FormControl>
-    <FormControl>
-        <InputLabel className="label" shrink={true}>About Me:</InputLabel>
-        <OutlinedInput className="input"
+    <FormControl sx={{padding:0.8}}>
+        <InputLabel>About Me:</InputLabel>
+        <OutlinedInput sx={{ padding: 0.5 }}
           type="text"
           name="bio"
+          label="Bio"
           minRows="3"
           multiline={true}
           placeholder={bio}
@@ -102,13 +107,12 @@ function UserEditForm({ user, updateUser }) {
           onChange={handleChange}
         />
     </FormControl>
-        <Button className="saveButton" variant="contained" color="secondary" onClick={handleSubmit}>
+        <Button className="saveButton"                 variant="contained"
+                sx={{ background: "purple" }}
+                startIcon={<GiPerspectiveDiceSixFacesSix />} onClick={handleSubmit}>
           Save
         </Button>
       </FormControl>
-      {errors
-        ? errors.map((e) => <h2 style={{ color: "red" }}>{e.toUpperCase()}</h2>)
-        : null}
     </div>
   );
 }

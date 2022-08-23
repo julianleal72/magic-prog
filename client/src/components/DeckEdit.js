@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
-import {Grid, Box, Button} from "@mui/material";
+import { Button, Alert } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import DeckEditTile from "./DeckEditTile.js";
 import DeckHeader from "./DeckHeader.js";
 import SearchBar from "./SearchBar.js";
 import { FiEdit3 } from "react-icons/fi";
+import "./DeckEdit.css";
+import {
+  GiPerspectiveDiceSixFacesSix,
+  GiArchiveResearch,
+} from "react-icons/gi";
 
 function DeckEdit({ user }) {
   const [errors, setErrors] = useState([]);
   const { state } = useLocation();
-  const deck = state.deck.deck;
+  const [deck, setDeck] = useState(state.deck.deck);
   const [condensedCollection, setCondensedCollection] = useState([]);
-  console.log(deck);
-  console.log(state);
+  const [savedDeck, setSavedDeck] = useState(false);
+  //console.log(deck);
+  //console.log(state);
   const [showHeader, setShowHeader] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [deckContents, setDeckContents] = useState(deck.cards.array);
@@ -57,8 +63,7 @@ function DeckEdit({ user }) {
       )
         unique.push(x);
     });
-    console.log(unique);
-
+    //console.log(unique);
     return unique;
   }
 
@@ -73,10 +78,10 @@ function DeckEdit({ user }) {
     let temp = [...deckContents];
     temp.forEach((c, index) => {
       if (c.count === 0) {
-        console.log("cutting shit");
-        console.log(c);
+        //console.log("cutting shit");
+        //console.log(c);
         temp.splice(index, 1);
-        console.log(temp);
+        //console.log(temp);
       }
       if (c.count > 4) {
         temp[index]["count"] = 4;
@@ -89,7 +94,7 @@ function DeckEdit({ user }) {
     let thisIsAnnoying = {
       array: handleShit(),
     };
-    console.log(thisIsAnnoying);
+    //console.log(thisIsAnnoying);
     fetch(`/decks/${deck.id}`, {
       method: "PATCH",
       headers: {
@@ -99,8 +104,10 @@ function DeckEdit({ user }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((deck) => {
-          console.log(deck);
-          alert("Deck Saved, Kiddo");
+          //console.log(deck);
+          // alert("Deck Saved, Kiddo");
+          setSavedDeck(true)
+          setTimeout(setSavedDeck(false),5000)
         });
       } else {
         r.json().then((json) => setErrors(Object.entries(json.errors)));
@@ -111,19 +118,25 @@ function DeckEdit({ user }) {
   function handleAddCard(toAdd, count) {
     if (
       deckContents.filter(
-        (card) => JSON.stringify(card) === JSON.stringify(toAdd)
+        (card) =>
+          JSON.stringify(card.printing) === JSON.stringify(toAdd.printing)
       ).length === 0
     ) {
-      setDeckContents([...deckContents, toAdd]);
-      console.log(deckContents);
+      let bandAid = { ...toAdd };
+      bandAid["count"] = 1;
+      //console.log(bandAid)
+      setDeckContents([...deckContents, bandAid]);
+      //console.log(deckContents);
     } else {
       let index = deckContents.findIndex(
-        (element) => JSON.stringify(element) === JSON.stringify(toAdd)
+        (element) =>
+          JSON.stringify(element.printing) === JSON.stringify(toAdd.printing)
       );
-      console.log(index);
+      //console.log(index);
       let tempCard = {
         ...deckContents.find(
-          (element) => JSON.stringify(element) === JSON.stringify(toAdd)
+          (element) =>
+            JSON.stringify(element.printing) === JSON.stringify(toAdd.printing)
         ),
       };
       let tempArr = [...deckContents];
@@ -135,17 +148,19 @@ function DeckEdit({ user }) {
       }
       //console.log(tempArr[index]["count"])
       setDeckContents(tempArr);
-      console.log(deckContents);
+      //console.log(deckContents);
     }
   }
 
   function handleRemoveCard(toRemove) {
     let index = deckContents.findIndex(
-      (element) => JSON.stringify(element) === JSON.stringify(toRemove)
+      (element) =>
+        JSON.stringify(element.printing) === JSON.stringify(toRemove.printing)
     );
     let tempCard = {
       ...deckContents.find(
-        (element) => JSON.stringify(element) === JSON.stringify(toRemove)
+        (element) =>
+          JSON.stringify(element.printing) === JSON.stringify(toRemove.printing)
       ),
     };
     let tempArr = [...deckContents];
@@ -155,39 +170,24 @@ function DeckEdit({ user }) {
       //console.log("here we are")
       tempArr.splice(index, 1);
     }
-    console.log(tempArr);
+    //console.log(tempArr);
     setDeckContents(tempArr);
-    console.log(deckContents);
+    //console.log(deckContents);
   }
 
   return (
     <div>
       <br />
+      {savedDeck ? <Alert severity="success">This is a success alert — check it out!</Alert> : null}
       <h2>{deck.name}</h2>
-      <br />
-      <div>
       <Button
-          variant="outlined"
-          color="primary"
-          startIcon={<FiEdit3 />}
-          onClick={handleShowHeader}
-        >
-          {showHeader ? "Close Deck Details" : "Edit Deck Details"}
-        </Button>
-        <button onClick={handleShowSearchBar}>
-          {showSearchBar ? " Close Search" : "Search"}
-        </button>
-      </div>
-      {showHeader ? (
-        <DeckHeader user={user} deck={deck} setShowHeader={setShowHeader} />
-      ) : null}
-      <br />
-      <br />
-      {deckContents.map((content) => (
-        <h5>
-          {content.count} - {content.printing.info.name}
-        </h5>
-      ))}
+        startIcon={<GiArchiveResearch />}
+        variant="contained"
+        sx={{ background: "purple" }}
+        onClick={handleShowSearchBar}
+      >
+        {showSearchBar ? " Close Search" : "Search"}
+      </Button>
       {showSearchBar ? (
         <SearchBar
           condensedCollection={condensedCollection}
@@ -196,13 +196,47 @@ function DeckEdit({ user }) {
         />
       ) : null}
       <br />
-      <br />
-      {errors ? errors.map((e) => <div key={e[0]}>{e[1]}</div>) : null}
-      <button onClick={commitCards}>Save Deck</button>
-      <br />
-      <br />
-      <Box>
-        <Grid>
+      <div className="wrapper">
+        <div className="leftSide">
+          <Button
+            variant="outlined"
+            color="primary"
+            startIcon={<FiEdit3 />}
+            onClick={handleShowHeader}
+          >
+            {showHeader ? "Close Deck Details" : "Edit Deck Details"}
+          </Button>
+          {showHeader ? (
+            <DeckHeader
+              user={user}
+              deck={deck}
+              setDeck={setDeck}
+              setShowHeader={setShowHeader}
+            />
+          ) : null}
+          <div></div>
+          {showHeader ? null : (
+            <div>
+              {deckContents.map((content) => (
+                <h5>
+                  {content.count} - {content.printing.info.name}
+                </h5>
+              ))}
+
+              {errors ? errors.map((e) => <div key={e[0]}>{e[1]}</div>) : null}
+              <Button
+                onClick={commitCards}
+                variant="contained"
+                sx={{ background: "purple" }}
+                startIcon={<GiPerspectiveDiceSixFacesSix />}
+              >
+                Save Deck
+              </Button>
+            </div>
+          )}
+        </div>
+
+        <div className="rightSide">
           {condensedCollection.map((card) => (
             <DeckEditTile
               key={card.printing.name}
@@ -213,8 +247,8 @@ function DeckEdit({ user }) {
               handleRemoveCard={handleRemoveCard}
             />
           ))}
-        </Grid>
-      </Box>
+        </div>
+      </div>
     </div>
   );
 }

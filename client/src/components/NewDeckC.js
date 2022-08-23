@@ -5,10 +5,18 @@ import {
   FormControl,
   InputLabel,
   OutlinedInput,
-  Select, MenuItem, Menu
+  Select,
+  MenuItem,
+  Menu,
 } from "@mui/material";
+import "./NewForm.css";
 
-import {GiBoltSpellCast, GiFireSpellCast, GiIceSpellCast} from "react-icons/gi"
+import {
+  GiBoltSpellCast,
+  GiFireSpellCast,
+  GiIceSpellCast,
+  GiCardDiscard,
+} from "react-icons/gi";
 
 function NewDeckC({ user }) {
   const [formData, setFormData] = useState({});
@@ -17,10 +25,11 @@ function NewDeckC({ user }) {
   const navigate = useNavigate();
   const collection = location.state.collection;
 
-  const spells = [<GiBoltSpellCast/>, <GiFireSpellCast/>, <GiIceSpellCast/>]
+  const spells = [<GiBoltSpellCast />, <GiFireSpellCast />, <GiIceSpellCast />];
 
   useEffect(() => {
     let starterFormData = {
+      icon: "",
       collection_id: location.state.collection.collection.id,
       name: "",
       format: "Freeform",
@@ -34,8 +43,8 @@ function NewDeckC({ user }) {
   function random(mn, mx) {
     return Math.random() * (mx - mn) + mn;
   }
-  function randomSpellCast(){
-    return spells[Math.floor(random(1, 3))-1]
+  function randomSpellCast() {
+    return spells[Math.floor(random(1, 3)) - 1];
   }
 
   function handleSubmit(e) {
@@ -60,6 +69,11 @@ function NewDeckC({ user }) {
     });
   }
 
+  function goBack(e) {
+    e.preventDefault();
+    navigate(`/user/collections`);
+  }
+
   function handleChange(e) {
     let { value, name } = e.target;
     if (name === "collection_id") {
@@ -74,42 +88,58 @@ function NewDeckC({ user }) {
     <div>
       {errors ? errors.map((e) => <div key={e[0]}>{e[1]}</div>) : null}
       <FormControl className="newDeckForm">
-      <FormControl>
-        <InputLabel>Deck Name:</InputLabel>
-        <OutlinedInput
-          type="text"
-          name="name"
-          placeholder="Deck Name..."
-          label="Name"
-          value={formData.name}
-          onChange={handleChange}
-        />
+        <FormControl className="inputBox" sx={{ padding: 0.8 }}>
+          <InputLabel>Deck Icon:</InputLabel>
+          <OutlinedInput
+            sx={{ padding: 0.5 }}
+            type="text"
+            name="icon"
+            placeholder="Deck Icon..."
+            label="Icon"
+            value={formData.icon}
+            onChange={handleChange}
+          />
         </FormControl>
-        <FormControl>
-        <InputLabel>Format:</InputLabel>
-        <Select
-          type="text"
-          value={formData.format}
-          label="format"
-          name="format"
-          onChange={handleChange}
-        >
-          <MenuItem value="Freeform">Freeform</MenuItem>
-          <MenuItem value="Eternal">Eternal</MenuItem>
-          <MenuItem value="Progression">Progression</MenuItem>
-        </Select>
+        <FormControl className="inputBox" sx={{ padding: 0.8 }}>
+          <InputLabel>Deck Name:</InputLabel>
+          <OutlinedInput
+            sx={{ padding: 0.5 }}
+            type="text"
+            name="name"
+            placeholder="Deck Name..."
+            label="Name"
+            value={formData.name}
+            onChange={handleChange}
+          />
         </FormControl>
-        <FormControl>
-        <InputLabel>Description:</InputLabel>
-        <OutlinedInput
-          name="description"
-          minRows="2"
-          label="Description"
-          placeholder="Deck Description..."
-          multiline={true}
-          value={formData.description}
-          onChange={handleChange}
-        /></FormControl>
+        <FormControl className="inputBox" sx={{ padding: 0.8 }}>
+          <InputLabel>Format:</InputLabel>
+          <Select
+            sx={{ padding: 0.5 }}
+            type="text"
+            value={formData.format}
+            label="Format"
+            name="format"
+            onChange={handleChange}
+          >
+            <MenuItem value="Freeform">Freeform</MenuItem>
+            <MenuItem value="Eternal">Eternal</MenuItem>
+            <MenuItem value="Progression">Progression</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl className="inputBox" sx={{ padding: 0.8 }}>
+          <InputLabel>Description:</InputLabel>
+          <OutlinedInput
+            sx={{ padding: 0.5 }}
+            name="description"
+            minRows="3"
+            label="Description"
+            placeholder="Deck Description..."
+            multiline={true}
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </FormControl>
         {/* <div>
         <label>Collection to add to:</label>
         <select onChange={handleChange} name="collection_id">
@@ -119,9 +149,25 @@ function NewDeckC({ user }) {
             </option>
           ))}
         </select></div> */}
-        <Button variant="contained" onClick={handleSubmit} startIcon={randomSpellCast()}>
-          Create Deck!
-        </Button>
+        <div className="buttonDiv">
+          <Button
+            variant="contained"
+            className="butt"
+            onClick={handleSubmit}
+            startIcon={randomSpellCast()}
+          >
+            Create Deck!
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            className="butt"
+            startIcon={<GiCardDiscard />}
+            onClick={(e) => goBack(e)}
+          >
+            Discard Deck
+          </Button>
+        </div>
       </FormControl>
     </div>
   );

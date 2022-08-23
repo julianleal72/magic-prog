@@ -17,6 +17,7 @@ import UserDecks from "./components/UserDecks.js";
 import NewDeckC from "./components/NewDeckC";
 import "./App.css";
 import PermaBanner from "./components/PermaBanner.js";
+import PermaFooter from "./components/PermaFooter";
 
 function App() {
   const navigate = useNavigate();
@@ -93,6 +94,7 @@ function App() {
         <Route path="/decks/edit/:id" element={<DeckEdit user={user} />} />
         <Route path="/user/decks" element={<UserDecks user={user} />} />
       </Routes>
+      <PermaFooter/>
     </div>
   );
 }

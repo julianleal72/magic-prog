@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FormControl, Input, Button, } from "@mui/material"
 import { useNavigate, Link } from "react-router-dom";
 import './Login.css'
+import {GiPortal} from "react-icons/gi"
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -53,9 +54,10 @@ function Login({ onLogin }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button type="submit">
-        Login
+      <br />
+      <Button type="submit" sx={{color:"purple"}}>Enter <GiPortal size="40"/>
       </Button>
+      <br />
     </FormControl>
       {errors?errors.map(e => <div key={e[0]}>{e[1]}</div>):null}
     <br />

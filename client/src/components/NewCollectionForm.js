@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, FormControl, InputLabel, OutlinedInput } from "@mui/material";
-
+import "./NewForm.css";
 import {
   GiBoltSpellCast,
   GiFireSpellCast,
   GiIceSpellCast,
+  GiCardDiscard,
 } from "react-icons/gi";
 
 function NewCollectionForm({ user, drafter }) {
@@ -21,6 +22,7 @@ function NewCollectionForm({ user, drafter }) {
       user_id: user ? user.id : 0,
       title: "",
       description: "",
+      icon: "",
     };
     setFormData(starterFormData);
     console.log("wereloaded");
@@ -71,41 +73,64 @@ function NewCollectionForm({ user, drafter }) {
       {user ? (
         <div>
           <FormControl className="newCollectionForm">
-          <FormControl>
-            <InputLabel>Title:</InputLabel>
-            <OutlinedInput
-              type="text"
-              name="title"
-              placeholder="Collection Title..."
-              label="Title"
-              onChange={handleChange}
-            />
+            <FormControl className="inputBox" sx={{ padding: 0.8 }}>
+              <InputLabel>Collection Icon:</InputLabel>
+              <OutlinedInput
+                sx={{ padding: 0.5 }}
+                type="text"
+                name="icon"
+                placeholder="Collection Icon..."
+                label="Icon"
+                value={formData.icon}
+                onChange={handleChange}
+              />
+            </FormControl>
+            <FormControl className="inputBox" sx={{ padding: 0.8 }}>
+              <InputLabel>Title:</InputLabel>
+              <OutlinedInput
+                sx={{ padding: 0.5 }}
+                type="text"
+                name="title"
+                placeholder="Collection Title..."
+                label="Title"
+                onChange={handleChange}
+              />
+            </FormControl>
+            <FormControl className="inputBox" sx={{ padding: 0.8 }}>
+              <InputLabel>Description</InputLabel>
+              <OutlinedInput
+                sx={{ padding: 0.5 }}
+                name="description"
+                minRows="3"
+                multiline={true}
+                placeholder="Collection Description..."
+                label="Description"
+                onChange={handleChange}
+              />
+            </FormControl>
+            <div className="buttonDivC">
+              <Button
+                className="butt"
+                variant="contained"
+                onClick={handleSubmit}
+                startIcon={randomSpellCast()}
+              >
+                Create Collection!
+              </Button>
+              <br />
+              {drafter ? null : (
+                <Button
+                  className="butt"
+                  variant="contained"
+                  color="error"
+                  startIcon={<GiCardDiscard />}
+                  onClick={(e) => goBack(e)}
+                >
+                  Discard Collection
+                </Button>
+              )}
+            </div>
           </FormControl>
-          <br />
-          <FormControl>
-            <InputLabel>Description</InputLabel>
-            <OutlinedInput
-              name="description"
-              minRows="2"
-              multiline={true}
-              placeholder="Collection Description..."
-              label="Description"
-              onChange={handleChange}
-            />
-          </FormControl>
-          <br />
-            <Button
-              variant="contained"
-              onClick={handleSubmit}
-              startIcon={randomSpellCast()}
-            >
-              Create Collection!
-            </Button>
-          </FormControl>
-          <br />
-          {drafter ? null : (
-            <button onClick={(e) => goBack(e)}>Discard Collection</button>
-          )}
         </div>
       ) : (
         <div>Please login to create a collection</div>

@@ -13,9 +13,3 @@ return(<NavLink to="/">
 </NavLink>)}
 
 export default PermaBanner;
-
-
-// .link {
-//     height: 100px;
-//     padding: 20px;
-// }

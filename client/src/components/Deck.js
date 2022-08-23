@@ -97,8 +97,7 @@ function Deck({ deck, user, collection, reload }) {
             {deck.description}
         </CardContent>
         <CardContent className="buttonsDiv">
-          <div className="buttonsDiv">
-            <Button
+            {alert? null : <div className="buttonsDiv"><Button
               variant="contained"
               onClick={handleEdit}
               className="edit"
@@ -114,7 +113,7 @@ function Deck({ deck, user, collection, reload }) {
               color="error"
             >
               Delete
-            </Button>
+            </Button></div>}
             {alert ? (
               <Alert
                 className="alert"
@@ -143,7 +142,6 @@ function Deck({ deck, user, collection, reload }) {
                 Are you sure you want to delete this deck?
               </Alert>
             ) : null}
-          </div>
         </CardContent>
       </Collapse>
     </Card>

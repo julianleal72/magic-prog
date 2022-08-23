@@ -1,0 +1,6 @@
+
+.hoverBaby:hover{
+    position: absolute;
+    width:280px;
+    z-index:2
+}

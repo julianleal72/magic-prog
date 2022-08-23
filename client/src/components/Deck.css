@@ -21,7 +21,9 @@
 .alert {
     position: relative;
     top:10px;
+    right: 20px
 }
+
 .alertMessage {
-    display:inline-block;
+    display:inline-flexbox;
 }

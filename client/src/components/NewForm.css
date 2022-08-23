@@ -1,0 +1,18 @@
+.buttonDiv {
+    width:600px;
+    display: flex;
+    flex-direction: row; 
+}
+
+.inputBox {
+    width:600px
+}
+
+.butt {
+    width:220px;
+}
+.buttonDivC {
+    width:800px;
+    display: flex;
+    flex-direction: row; 
+}

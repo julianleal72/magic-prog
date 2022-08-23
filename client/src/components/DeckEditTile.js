@@ -2,13 +2,16 @@ import Cardraised from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import {useState} from 'react'
 import Button from '@mui/material/Button';
+import './CardHover.css'
+import {AiOutlinePlusCircle, AiOutlineMinusCircle} from "react-icons/ai"
+
 
 function DeckEditTile({ card, deck, handleAddCard, handleRemoveCard, deckContents }) {
   const [numInDeck, setNumInDeck] = useState(howManyInDeck())
   //console.log(card)
   //console.log(deck)
   //console.log(deckContents)
-  console.log(numInDeck)
+  //console.log(numInDeck)
   function howManyInDeck(){
     let x = deckContents.find((element) => JSON.stringify(element) === JSON.stringify(card))
     if (x) return x.count
@@ -30,50 +33,46 @@ function DeckEditTile({ card, deck, handleAddCard, handleRemoveCard, deckContent
   }
 
   return (
+    <div>
     <Cardraised
       sx={{
         margin: "auto",
-      }}
+      }} className="hoverBaby"
     >
       <div style={{ position: "relative" }}>
         <CardMedia
           component="img"
-          height="100"
-          width="100"
           image={card.printing.info.imageUrl}
           alt="cardtile"
           sx={{ padding: "0em 0em 0em 0em", objectFit: "contain" }}
         />
-        <Button variant="outlined" size="small" onClick ={handleAdd}
+        <Button variant="contained" size="small" onClick ={handleAdd} startIcon={<AiOutlinePlusCircle/>}
           style={{
             position: "absolute",
-            top: 50,
-            left: "20%",
-            color: "blue",
-            background: "white",
-            transform: "translateX(-60%)",
+            top: 75,
+            left: "31%",
+            transform: "translateX(-60%)"
           }}
         >
-          {" + "}
           {card.count}x
         </Button>
         {numInDeck > 0 ?
-        <Button variant="outlined" size="small" onClick ={handleSubtract}
+        <Button variant="outlined" startIcon={<AiOutlineMinusCircle/>} size="small" onClick ={handleSubtract}
           style={{
             position: "absolute",
-            top: 50,
-            left: "70%",
+            top: 75,
+            left: "61%",
             color: "red",
             background: "black",
             transform: "translateX(-20%)",
           }}
         >
-          {" - "}
           {numInDeck}x
         </Button>
       : null}
       </div>
     </Cardraised>
+    </div>
   );
 }
 

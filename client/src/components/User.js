@@ -58,9 +58,10 @@ function User({ user, deleteUser }) {
   if (user) {
     const { avatar, username, password, bio } = user;
     userScreen = (
-      <div>
+      <Card>
         <CardContent className="card-content">
           <img src={avatar} alt="avatar pic" className="avatar-pic" />
+          <br/>
           <Typography
             className="card-desc"
             variant="subtitle1"
@@ -71,13 +72,12 @@ function User({ user, deleteUser }) {
             variant="body1"
             color="text.secondary"
           >{`${bio}`}</Typography>
-
+<br />
           <IconButton className="editButton">
             <Link to={`/user/edit`}>
               <FiEdit3 className="icon" />
             </Link>
           </IconButton>
-
           {alert ? null : (
             <Button
               variant="outlined"
@@ -118,7 +118,7 @@ function User({ user, deleteUser }) {
             </Alert>
           ) : null}
         </CardContent>
-      </div>
+      </Card>
     );
   } else {
     userScreen = (
