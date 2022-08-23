@@ -18,8 +18,8 @@ import {
   FiArrowLeftCircle,
   FiArrowRightCircle,
 } from "react-icons/fi";
-import { GiSpellBook, GiMagicSwirl } from "react-icons/gi";
-import { IoPersonCircleSharp } from "react-icons/io5";
+import {BsArrowsExpand, BsArrowsCollapse} from "react-icons/bs"
+import { GiSpellBook, GiMagicSwirl, GiCastle } from "react-icons/gi";
 import { BsFillCollectionFill } from "react-icons/bs";
 
 import "react-pro-sidebar/dist/css/styles.css";
@@ -38,14 +38,14 @@ function UserNav({ user, handleLogout }) {
           <div className="greeting">
             <p>
               {menuCollapse ? (
-                <IoPersonCircleSharp />
+                null
               ) : (
                 `Hail, ${user.username}!`
               )}
             </p>
           </div>
           <div className="closemenu" onClick={menuIconClick}>
-            {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />}
+            {menuCollapse ? <BsArrowsExpand /> : <BsArrowsCollapse/>}
           </div>
         </SidebarHeader>
         {menuCollapse ? null:
@@ -64,6 +64,11 @@ function UserNav({ user, handleLogout }) {
             <MenuItem icon={<BsFillCollectionFill />}>
               <Link to={`/user/collections`} className="button">
                 My Collections
+              </Link>
+            </MenuItem>
+            <MenuItem icon={<GiCastle />}>
+              <Link to={`/`} className="button">
+                Homepage
               </Link>
             </MenuItem>
           </Menu>

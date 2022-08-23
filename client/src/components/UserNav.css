@@ -5,7 +5,7 @@
     width: 200px;
   }
   #header .pro-sidebar {
-    height: 55vh;
+    height: 60vh;
     width: 90%;
     min-width: 80%;
   }
@@ -18,14 +18,14 @@
     border-radius: 50%;
     font-weight: bold;
     font-size: 22px;
-    top: 55px;
+    top: 49px;
     cursor: pointer;
   }
 
   #header .pro-sidebar.collapsed {
     width: 50px;
     min-width: 50px;
-    height: 100px;
+    height: 80px;
     min-height:50px;
   }
   #header .pro-sidebar-inner {

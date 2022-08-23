@@ -9,6 +9,7 @@ import "./DeckEdit.css";
 import {
   GiPerspectiveDiceSixFacesSix,
   GiArchiveResearch,
+  GiWhiteBook
 } from "react-icons/gi";
 
 function DeckEdit({ user }) {
@@ -104,14 +105,16 @@ function DeckEdit({ user }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((deck) => {
-          //console.log(deck);
-          // alert("Deck Saved, Kiddo");
+          console.log(deck);
           setSavedDeck(true)
-          setTimeout(setSavedDeck(false),5000)
+          setTimeout(() => {
+            setSavedDeck(false)
+          }, 5000);
         });
       } else {
         r.json().then((json) => setErrors(Object.entries(json.errors)));
       }
+      
     });
   }
 
@@ -178,10 +181,10 @@ function DeckEdit({ user }) {
   return (
     <div>
       <br />
-      {savedDeck ? <Alert severity="success">This is a success alert — check it out!</Alert> : null}
+      {savedDeck ? <Alert severity="success">Deck Has Been Saved, Yo. Very Cool</Alert> : null}
       <h2>{deck.name}</h2>
       <Button
-        startIcon={<GiArchiveResearch />}
+        startIcon={showSearchBar ? <GiWhiteBook/> : <GiArchiveResearch />}
         variant="contained"
         sx={{ background: "purple" }}
         onClick={handleShowSearchBar}

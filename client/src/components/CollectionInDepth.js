@@ -7,7 +7,7 @@ import SearchBar from "./SearchBar.js";
 import { FcPlus } from "react-icons/fc";
 import CollectionHeader from "./CollectionHeader.js";
 import { FiEdit3 } from "react-icons/fi";
-import { GiSpellBook } from "react-icons/gi";
+import { GiSpellBook, GiArchiveResearch, GiWhiteBook } from "react-icons/gi";
 import './CollectionInDepth.css'
 
 function CollectionInDepth() {
@@ -19,6 +19,7 @@ function CollectionInDepth() {
   const [condensedCollection, setCondensedCollection] = useState([]);
   const [displayedCards, setDisplayedCards] = useState([]);
   const [showHeader, setShowHeader] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
 
   useEffect(() => {
     setCondensedCollection(condenseCards());
@@ -56,6 +57,9 @@ function CollectionInDepth() {
   function handleShowHeader() {
     setShowHeader(!showHeader);
   }
+  function handleShowSearchBar() {
+    setShowSearchBar(!showSearchBar);
+  }
 
   return (
     <div>
@@ -92,21 +96,31 @@ function CollectionInDepth() {
           />
         ) : null}
       </div>
+      
+      <br />
 
-      <SearchBar
-        condensedCollection={condensedCollection}
-        setDisplayedCards={setDisplayedCards}
-        displayedCards={displayedCards}
-      />
+      <Button
+        startIcon={showSearchBar ? <GiWhiteBook/> : <GiArchiveResearch />}
+        variant="contained"
+        sx={{ background: "purple" }}
+        onClick={handleShowSearchBar}
+      >
+        {showSearchBar ? " Close Search" : "Search"}
+      </Button>
+      {showSearchBar ? (
+        <SearchBar
+          condensedCollection={condensedCollection}
+          setDisplayedCards={setDisplayedCards}
+          displayedCards={displayedCards}
+        />
+      ) : null}
       <br />
       <br />
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <div className="cardsContainer">
           {displayedCards.map((card) => (
             <CardCollectTile key={card.printing.name} card={card} />
           ))}
-        </Grid>
-      </Box>
+        </div>
     </div>
   );
 }

@@ -83,7 +83,9 @@ function DeckHeader({ deck, setDeck, setShowHeader }) {
         <FormControl sx={{ padding: 0.8 }}>
           <InputLabel>Format:</InputLabel>
           <Select
+          autoWidth
             type="text"
+            defaultValue={{...deck}.format}
             value={formData.format}
             sx={{ padding: 0.5 }}
             label="Format"
