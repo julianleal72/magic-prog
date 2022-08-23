@@ -5,7 +5,7 @@
 
 .editButton {
     position: absolute;
-    top: -325px;
+    top: -346px;
     left: 175px;
     width: 70px;
     height: 70px;
@@ -20,9 +20,9 @@
     border-radius: 37%;
 }
 
-.delete {
+#delete {
     position: absolute;
-    top: 100px
+    top: 450px;
 }
 
 .alert {
@@ -35,4 +35,19 @@
 
 .avatar-pic {
     width: 400px;
+}
+
+
+.userEditForm {
+    position: absolute;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.label {
+    width:100px
+}
+.input {
+    width: 1000px;
+    height:40px
 }

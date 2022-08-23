@@ -2,7 +2,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControl from "@mui/material/FormControl";
 import { useState } from "react";
 import { yellow, blue, purple, red, green } from "@mui/material/colors";
-import { Button, Select, Box, Input } from "@mui/material";
+import { Button, Select, Box, Input, FormGroup } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 
@@ -105,7 +105,7 @@ function SearchBar({ setDisplayedCards, condensedCollection, displayedCards }) {
       <FormControl>
         <InputLabel>Search by card name</InputLabel>
         <Input name="name" onChange={handleSearchByName} />
-      </FormControl>
+      <FormGroup>
       <Checkbox
         checked={whiteChecked}
         onClick={(e) => setWhiteChecked(e.target.checked)}
@@ -156,6 +156,7 @@ function SearchBar({ setDisplayedCards, condensedCollection, displayedCards }) {
           },
         }}
       />
+      </FormGroup></FormControl>
       <FormControl sx={{ width: "20vw" }}>
         <InputLabel>Search by card type</InputLabel>
         <Select

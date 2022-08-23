@@ -9,9 +9,8 @@ import { Alert, Box } from "@mui/material";
 import { styled } from "@mui/styles";
 import "./User.css";
 import { FiEdit3 } from "react-icons/fi";
-import DeleteIcon from '@mui/icons-material/Delete';
-import {RiEmotionHappyLine, RiEmotionUnhappyLine} from "react-icons/ri"
-
+import DeleteIcon from "@mui/icons-material/Delete";
+import { RiEmotionHappyLine, RiEmotionUnhappyLine } from "react-icons/ri";
 
 function User({ user, deleteUser }) {
   const [errors, setErrors] = useState(false);
@@ -66,6 +65,7 @@ function User({ user, deleteUser }) {
             className="card-desc"
             variant="subtitle1"
           >{`${username}`}</Typography>
+          <br/>
           <Typography
             className="card-desc"
             variant="body1"
@@ -74,20 +74,43 @@ function User({ user, deleteUser }) {
 
           <IconButton className="editButton">
             <Link to={`/user/edit`}>
-              <FiEdit3 className="icon"/>
+              <FiEdit3 className="icon" />
             </Link>
           </IconButton>
 
-          <MyButton variant = "outlined" className = "delete" onClick={deleteAlert} startIcon={<DeleteIcon />} color="error">Delete user</MyButton>
+          {alert ? null : (
+            <Button
+              variant="outlined"
+              onClick={deleteAlert}
+              startIcon={<DeleteIcon />}
+              color="error"
+              id="delete"
+            >
+              Delete user
+            </Button>
+          )}
           {alert ? (
-            <Alert className="alert"
+            <Alert
+              className="alert"
               severity="warning"
               action={
                 <div className="alertMessage">
-                  <MySecondButton variant = "outlined" onClick={undoDelete} color="success" startIcon = {<RiEmotionHappyLine/>}>
+                  <Button
+                    variant="outlined"
+                    onClick={undoDelete}
+                    color="success"
+                    startIcon={<RiEmotionHappyLine />}
+                  >
                     Keep my Profile
-                  </MySecondButton>
-                  <MyButton onClick={handleDelete} variant = "outlined" endIcon={<RiEmotionUnhappyLine />} color="error">Delete my Profile</MyButton>
+                  </Button>
+                  <Button
+                    onClick={handleDelete}
+                    variant="outlined"
+                    endIcon={<RiEmotionUnhappyLine />}
+                    color="error"
+                  >
+                    Delete my Profile
+                  </Button>
                 </div>
               }
             >

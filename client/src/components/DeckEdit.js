@@ -196,8 +196,8 @@ function DeckEdit({ user }) {
       <button onClick={commitCards}>Save Deck</button>
       <br />
       <br />
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Box>
+        <Grid>
           {condensedCollection.map((card) => (
             <DeckEditTile
               key={card.printing.name}

@@ -33,7 +33,7 @@ function App() {
           console.log(client);
         });
       } else {
-        console.log("We're not rendering nothing pal");
+        console.log("Nope");
       }
     });
   }, []);

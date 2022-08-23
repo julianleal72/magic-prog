@@ -50,6 +50,14 @@ function DeckHeader({ user, setShowHeader}) {
     <div>
       {errors ? errors.map((e) => <div key={e[0]}>{e[1]}</div>) : null}
       <form onSubmit={handleSubmit}>
+        <label>Deck Icon:</label>
+        <input
+          type="text"
+          name="icon"
+          placeholder={"Deck Icon..."}
+          value={formData.icon}
+          onChange={handleChange}
+        />
         <label>Deck Name:</label>
         <input
           type="text"

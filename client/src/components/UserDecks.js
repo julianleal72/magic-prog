@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Deck from "./Deck.js";
 import { useNavigate, useLocation } from "react-router-dom";
+import "./UserDecks.css";
+import { Grid } from "@mui/material";
 
 function UserDecks({ user }) {
   const [decks, setDecks] = useState([]);
   const location = useLocation();
-  const [collection, setCollection] = useState({}
-  );
-  const [reload, setReload] = useState(false)
+  const [collection, setCollection] = useState({});
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     if (location.state) {
@@ -17,18 +18,18 @@ function UserDecks({ user }) {
   }, [reload]);
 
   function goGetEm() {
-    console.log("fetching")
+    console.log("fetching");
     fetch(`/users/${user.id}`)
       .then((r) => r.json())
       .then((r) => {
         setDecks(r.decks);
         console.log(r);
-      })
+      });
   }
 
-  function handleReload(){
-    console.log("triggered")
-    setReload(!reload)
+  function handleReload() {
+    console.log("triggered");
+    setReload(!reload);
   }
 
   function collectionDecks() {
@@ -48,11 +49,22 @@ function UserDecks({ user }) {
         </Link>
       </button> */}
       {decks.length > 0 ? (
-        <div>
+        <Grid
+          spacing={2}
+          container
+          direction="row"
+          justifyContent="center"
+          className="deckContainer"
+        >
           {decks.map((deck) => (
-            <Deck deck={deck} user={user} reload={handleReload} collection={collection}/>
+            <Deck
+              deck={deck}
+              user={user}
+              reload={handleReload}
+              collection={collection}
+            />
           ))}
-        </div>
+        </Grid>
       ) : (
         "You have no decks! Try creating one."
       )}

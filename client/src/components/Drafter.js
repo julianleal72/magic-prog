@@ -101,4 +101,4 @@ function Drafter({ user }) {
   );
 }
 
-export default Drafter;
+export default Drafter

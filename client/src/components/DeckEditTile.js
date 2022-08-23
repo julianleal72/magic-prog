@@ -33,14 +33,13 @@ function DeckEditTile({ card, deck, handleAddCard, handleRemoveCard, deckContent
     <Cardraised
       sx={{
         margin: "auto",
-        padding: "0.1em",
       }}
     >
       <div style={{ position: "relative" }}>
         <CardMedia
           component="img"
-          height="200"
-          width="180"
+          height="100"
+          width="100"
           image={card.printing.info.imageUrl}
           alt="cardtile"
           sx={{ padding: "0em 0em 0em 0em", objectFit: "contain" }}

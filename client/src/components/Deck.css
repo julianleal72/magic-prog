@@ -1,0 +1,27 @@
+.edit {
+    position: relative;
+    width: 100px;
+    height: 35px;
+    right: 5px;
+    top: 5px
+}
+.delete {
+    position: relative;
+    top:5px;
+    left:5px;
+    width: 100px;
+    height: 35px;
+}
+
+.buttonsDiv {
+    position: relative;
+    display:inline
+}
+
+.alert {
+    position: relative;
+    top:10px;
+}
+.alertMessage {
+    display:inline-block;
+}
