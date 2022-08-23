@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import { useNavigate, useLocation } from "react-router-dom";
+import {Grid, Box, Button} from "@mui/material";
+import { useLocation } from "react-router-dom";
 import DeckEditTile from "./DeckEditTile.js";
 import DeckHeader from "./DeckHeader.js";
 import SearchBar from "./SearchBar.js";
+import { FiEdit3 } from "react-icons/fi";
 
 function DeckEdit({ user }) {
   const [errors, setErrors] = useState([]);
@@ -166,9 +166,14 @@ function DeckEdit({ user }) {
       <h2>{deck.name}</h2>
       <br />
       <div>
-        <button onClick={handleShowHeader}>
+      <Button
+          variant="outlined"
+          color="primary"
+          startIcon={<FiEdit3 />}
+          onClick={handleShowHeader}
+        >
           {showHeader ? "Close Deck Details" : "Edit Deck Details"}
-        </button>
+        </Button>
         <button onClick={handleShowSearchBar}>
           {showSearchBar ? " Close Search" : "Search"}
         </button>

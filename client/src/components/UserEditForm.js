@@ -95,6 +95,8 @@ function UserEditForm({ user, updateUser }) {
         <OutlinedInput className="input"
           type="text"
           name="bio"
+          minRows="3"
+          multiline={true}
           placeholder={bio}
           value={formData.bio}
           onChange={handleChange}

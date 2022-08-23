@@ -54,7 +54,7 @@ function UserDecks({ user }) {
           container
           direction="row"
           justifyContent="center"
-          className="deckContainer"
+          className="cardContainer"
         >
           {decks.map((deck) => (
             <Deck

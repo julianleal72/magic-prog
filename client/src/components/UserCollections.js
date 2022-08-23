@@ -1,6 +1,9 @@
 import {Link} from "react-router-dom"
 import { useState, useEffect } from "react";
 import Collection from "./Collection";
+import { Grid, Button } from "@mui/material";
+import "./UserDecks.css";
+import {FcPlus} from "react-icons/fc"
 
 function UserCollections({user}){
     const [collections, setCollections] = useState([]);
@@ -27,16 +30,22 @@ function UserCollections({user}){
 
     return(
         <div>
-            <button><Link to="/collections/new">New Collection</Link></button>
+            <Button variant="outlined" color="success" startIcon={<FcPlus/>}><Link to="/collections/new">New Collection</Link></Button>
+            <br />
             {collections.length > 0 ? 
-            <div>
+            <Grid
+            spacing={2}
+            container
+            direction="row"
+            justifyContent="center"
+            className="cardContainer"
+          >
             {collections.map((collection) => <Collection collection={collection} user={user} reload={handleReload}/>
             )}
-            </div>
+            </Grid>
             : "You have no collections! Try creating one."}
         </div>
     )
-
 }
 
 export default UserCollections
