@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import DraftSlider from "./DraftSlider.js";
 import {GiStarSwirl} from "react-icons/gi"
 
-function Drafter({ user, sets, setSets }) {
+function Drafter({ user, sets, setSets, fixins }) {
   const [currentFilter, setCurrentFilter] = useState("code");
   const [chosenSet, setChosenSet] = useState(sets[0]);
   const [numPacks, setNumPacks] = useState(3);
@@ -98,7 +98,7 @@ function Drafter({ user, sets, setSets }) {
         </div>
         <div className="rightSideD">
           <div className="leftSideE">
-            {chosenSet ? <SetTile set={chosenSet} user={user} /> : null}
+            {chosenSet ? <SetTile set={chosenSet} user={user} fixins = {fixins}/> : null}
           </div>
           <div className="rightSideE">
             <FormControl sx={{ padding: 0.8 }} size="small">
@@ -124,7 +124,7 @@ function Drafter({ user, sets, setSets }) {
       <DraftSlider numPacks={numPacks} setNumPacks={setNumPacks} />
       <br />
       <br />
-      <Button variant="contained" color="success" startIcon={<GiStarSwirl/>} endIcon={<GiStarSwirl/>}>
+      
         <Link
           to="/packopener"
           state={{
@@ -132,10 +132,10 @@ function Drafter({ user, sets, setSets }) {
             set: { chosenSet },
             collection: { collection },
           }}
-        >
-          Draft!
+        ><Button variant="contained" color="success" startIcon={<GiStarSwirl/>} endIcon={<GiStarSwirl/>}>
+          Draft!</Button>
         </Link>
-      </Button>
+      
     </div>
   );
 }

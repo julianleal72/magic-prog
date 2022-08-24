@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import OpenedPacks from "./OpenedPacks.js";
 import Pack from "./Pack.js";
 import { Button, Alert } from "@mui/material";
 import { GiOpenChest, GiBookmarklet } from "react-icons/gi";
@@ -44,7 +43,7 @@ function PackOpener() {
   }
 
   function handleCommit() {
-    packs.forEach((pack) => {
+    openedPacks.forEach((pack) => {
       pack.forEach((card) => {
         delete card.rulings;
         delete card.foreignNames;
@@ -95,8 +94,7 @@ function PackOpener() {
   }
 
   function goagain() {
-    setNumPacks(numPacks);
-    setOpened([]);
+    setOpenedPacks([]);
     setOpened(false);
     setOpenedAll(false);
     let i = 1;
@@ -106,15 +104,15 @@ function PackOpener() {
     }
   }
 
-  function condense() {
-    let jesus = [];
-    console.log(openedPacks);
-    openedPacks.forEach((element) => {
-      jesus = jesus.concat(element);
-    });
-    console.log(jesus);
-    return jesus;
-  }
+  // function condense() {
+  //   let jesus = [];
+  //   console.log(openedPacks);
+  //   openedPacks.forEach((element) => {
+  //     jesus = jesus.concat(element);
+  //   });
+  //   console.log(jesus);
+  //   return jesus;
+  // }
   //don't display dupes and just display how many copies
 
   function deleteAlert() {
@@ -173,9 +171,11 @@ function PackOpener() {
             ) : null}
           </div>
         ) : null}
-        <br />
         {openedAll ? null : (
           <div>
+                       <h5>
+              Packs Left: {numPacks - openedPacks.length}/{numPacks}
+            </h5>
             {opened ? (
               <Button
                 variant="outlined"
@@ -187,20 +187,21 @@ function PackOpener() {
               </Button>
             ) : null}
             {opened ? null : (
-              <Button
+              <div><Button
                 variant="contained"
                 startIcon={<GiOpenChest />}
                 onClick={handleOpen}
               >
                 Open Pack
               </Button>
+              
+              {/* <img></img> */}
+              </div>
             )}
-            <h5>
-              Packs Left: {numPacks - openedPacks.length}/{numPacks}
-            </h5>
           </div>
         )}
       </div>
+      <br />
       {opened ? <Pack pack={packs[0]} /> : null}
       <div>
       <br />
@@ -249,7 +250,9 @@ function PackOpener() {
         ) : null}
         </div>
       </div>
-      <OpenedPacks/>
+      <div>
+        
+      </div>
     </div>
   );
 }

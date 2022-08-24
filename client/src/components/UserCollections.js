@@ -10,21 +10,33 @@ function UserCollections({user}){
     const [reload, setReload] = useState(false)
 
     useEffect(() => {
-      console.log()
         goGetEm();
     }, [reload])
 
+    // function goGetEm(){
+    //   console.log("fetching")
+    //   fetch(`/users/${user.id}`)
+    //   .then((r) => r.json())
+    //   .then((r) => {
+    //     setCollections(r.collections);
+    //     console.log(r.collections)
+    //   })}
+
     function goGetEm(){
-      console.log("fetching")
-      fetch(`/users/${user.id}`)
+      //console.log("fetching")
+      fetch('/collections')
       .then((r) => r.json())
       .then((r) => {
-        setCollections(r.collections);
-        console.log(r)
+        let temp=[];
+        r.forEach((element)=> {
+          if(element.user_id === user.id) temp.push(element)
+        })
+        setCollections(temp);
+        console.log(temp)
       })}
 
     function handleReload(){
-      console.log("triggered")
+      //console.log("triggered")
       setReload(!reload)
     }
 

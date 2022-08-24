@@ -32,7 +32,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function Collection({ collection, user, reload }) {
-    const [cards, setCards] = useState(user.cards.filter(card => card.collection_id === collection.id))
+    const [cards, setCards] = useState(collection.cards)
     console.log(collection);
     console.log(cards)
     const [expanded, setExpanded] = useState(false);

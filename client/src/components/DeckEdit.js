@@ -242,7 +242,7 @@ function DeckEdit({ user }) {
           )}
         </div>
         <div className="rightSide">
-          {condensedCollection.map((card) => (
+          {displayedCards.map((card) => (
             <DeckEditTile
               key={card.printing.name}
               card={card}

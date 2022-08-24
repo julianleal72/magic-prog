@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import { Alert, Box } from "@mui/material";
+import { Alert} from "@mui/material";
 import { FiEdit3 } from "react-icons/fi";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { RiEmotionHappyLine, RiEmotionUnhappyLine } from "react-icons/ri";
@@ -57,6 +57,7 @@ function Deck({ deck, user, collection, reload }) {
       .then((r) => r.json())
       .then((r) => {
         console.log(r);
+        setAlert(false)
         reload();
       });
   }
