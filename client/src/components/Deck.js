@@ -61,8 +61,16 @@ function Deck({ deck, user, collection, reload }) {
       });
   }
 
+  function cardCount(){
+    let sum = 0;
+    deck.cards.array.forEach((element)=> {
+      sum += element.count
+    })
+    return sum
+  }
+
   return (
-    <Card sx={{ maxWidth: 250 }}>
+    <Card sx={{ width: 300 }}>
       <CardHeader
         title={deck.name}
         subheader=""
@@ -74,7 +82,7 @@ function Deck({ deck, user, collection, reload }) {
       />
       <CardMedia
         component="img"
-        height="200"
+        height="300"
         width="200"
         image={deck.icon}
         alt={deck.name}
@@ -93,8 +101,8 @@ function Deck({ deck, user, collection, reload }) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
             {/* {deck.collection.title} */}
-            {deck.format} - x Cards <br />
-            {deck.description}
+            {deck.format} - {cardCount()} Cards <br />
+            <div className="wrapIt">{deck.description}</div>
         </CardContent>
         <CardContent className="buttonsDiv">
             {alert? null : <div className="buttonsDiv"><Button

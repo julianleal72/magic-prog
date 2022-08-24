@@ -98,7 +98,7 @@ function CollectionInDepth() {
       </div>
       
       <br />
-
+      {showHeader ? null : <div>
       <Button
         startIcon={showSearchBar ? <GiWhiteBook/> : <GiArchiveResearch />}
         variant="contained"
@@ -113,7 +113,7 @@ function CollectionInDepth() {
           setDisplayedCards={setDisplayedCards}
           displayedCards={displayedCards}
         />
-      ) : null}
+      ) : null}</div>}
       <br />
       <br />
         <div className="cardsContainer">

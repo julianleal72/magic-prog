@@ -10,6 +10,7 @@ import {
 import "./Drafter.css";
 import { Link } from "react-router-dom";
 import DraftSlider from "./DraftSlider.js";
+import {GiStarSwirl} from "react-icons/gi"
 
 function Drafter({ user, sets, setSets }) {
   const [currentFilter, setCurrentFilter] = useState("code");
@@ -22,6 +23,7 @@ function Drafter({ user, sets, setSets }) {
   useEffect(() => {
     console.log(sets);
     handleSort(currentFilter);
+    setChosenSet(sets[0])
   }, []);
 
   function handleChange(e) {
@@ -59,13 +61,13 @@ function Drafter({ user, sets, setSets }) {
 
   return (
     <div>
-      <div className="wrapper">
-        <div className="leftSide">
+      <div className="wrapperD">
+        <div className="leftSideD">
           <FormControl sx={{ width: 400 }}>
             <FormControl sx={{ padding: 0.8 }} size="small">
               <InputLabel>Set:</InputLabel>
               <Select
-                sx={{ padding: 0.5 }}
+                sx={{ padding: 0.5}}
                 onChange={handleChange}
                 value={chosenSet.code}
                 label="Set"
@@ -77,7 +79,7 @@ function Drafter({ user, sets, setSets }) {
                 ))}
               </Select>
             </FormControl>
-            <FormControl sx={{ padding: 0.8 }} size="small">
+            <FormControl sx={{ padding: 0.8, width:"400px" }} size="small">
               <InputLabel>Sort by:</InputLabel>
               <Select
                 sx={{ padding: 0.5 }}
@@ -94,7 +96,7 @@ function Drafter({ user, sets, setSets }) {
             </FormControl>
           </FormControl>
         </div>
-        <div className="rightSide">
+        <div className="rightSideD">
           <div className="leftSideE">
             {chosenSet ? <SetTile set={chosenSet} user={user} /> : null}
           </div>
@@ -122,7 +124,7 @@ function Drafter({ user, sets, setSets }) {
       <DraftSlider numPacks={numPacks} setNumPacks={setNumPacks} />
       <br />
       <br />
-      <Button variant="contained" color="success">
+      <Button variant="contained" color="success" startIcon={<GiStarSwirl/>} endIcon={<GiStarSwirl/>}>
         <Link
           to="/packopener"
           state={{

@@ -83,22 +83,21 @@ function DeckHeader({ deck, setDeck, setShowHeader }) {
         <FormControl sx={{ padding: 0.8 }}>
           <InputLabel>Format:</InputLabel>
           <Select
-          autoWidth
             type="text"
             defaultValue={{...deck}.format}
             value={formData.format}
-            sx={{ padding: 0.5 }}
+            sx={{ padding: 0.5, autoWidth:true }}
             label="Format"
             name="format"
             onChange={handleChange}
           >
-            <MenuItem sx={{ width: 150 }} value="Freeform">
+            <MenuItem sx={{ width: 200 }} value="Freeform">
               Freeform
             </MenuItem>
-            <MenuItem sx={{ width: 150 }} value="Eternal">
+            <MenuItem sx={{ width: 200 }} value="Eternal">
               Eternal
             </MenuItem>
-            <MenuItem sx={{ width: 150 }} value="Progression">
+            <MenuItem sx={{ width: 200 }} value="Progression">
               Progression
             </MenuItem>
           </Select>

@@ -1,4 +1,13 @@
 
+.footer {
+    display:inline;
+    width:800px;
+    position: relative;
+    bottom: 5px;
+}
 
-
+.link {
+    height: 80px;
+    padding: 10px;
+}
 

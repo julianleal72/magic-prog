@@ -24,6 +24,7 @@ function DeckEdit({ user }) {
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [deckContents, setDeckContents] = useState(deck.cards.array);
   const [displayedCards, setDisplayedCards] = useState([]);
+  const [display, setDisplay] = useState(null)
 
   useEffect(() => {
     // console.log(state);
@@ -220,13 +221,15 @@ function DeckEdit({ user }) {
           <div></div>
           {showHeader ? null : (
             <div>
+              <div className="deckList">
               {deckContents.map((content) => (
-                <h5>
-                  {content.count} - {content.printing.info.name}
-                </h5>
+                // <div onmouseover={setDisplay(content.printing.info.imageUrl)} onmouseout={setDisplay(null)}>
+                  <p>{content.count} - {content.printing.info.name}</p>
+                // </div>
               ))}
-
+              </div>
               {errors ? errors.map((e) => <div key={e[0]}>{e[1]}</div>) : null}
+              {/* {display? <img src={display}/> : null} */}
               <Button
                 onClick={commitCards}
                 variant="contained"
@@ -238,7 +241,6 @@ function DeckEdit({ user }) {
             </div>
           )}
         </div>
-
         <div className="rightSide">
           {condensedCollection.map((card) => (
             <DeckEditTile

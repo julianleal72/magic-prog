@@ -1,7 +1,4 @@
-.link {
-    height: 80px;
-    padding: 10px;
-}
+
 
 .getInLoser {
     display: inline;
@@ -14,9 +11,4 @@
     height: 50px;
 }
 
-.footer {
-    display:inline-block;
-    width:1000px;
-    position: relative;
-    bottom: 5px
-}
+

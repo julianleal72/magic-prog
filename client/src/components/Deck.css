@@ -27,3 +27,9 @@
 .alertMessage {
     display:inline-flexbox;
 }
+
+.wrapIt {
+    overflow-wrap: break-word;
+    word-break: break-all;
+    hyphens: manual;
+}

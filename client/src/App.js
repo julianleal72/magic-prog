@@ -109,7 +109,10 @@ function App() {
 
   return (
     <div className="app">
+      <div>
+      <div>
       <PermaBanner/>
+      </div>
       {user ? <UserNav user={user} handleLogout={handleLogout} /> : null}
       <Routes>
         <Route exact path="/" element={<Home user={user} />} />
@@ -142,7 +145,10 @@ function App() {
         <Route path="/decks/edit/:id" element={<DeckEdit user={user} />} />
         <Route path="/user/decks" element={<UserDecks user={user} />} />
       </Routes>
+      </div>
+      <div className="footer">
       <PermaFooter/>
+      </div>
     </div>
   );
 }

@@ -2,6 +2,8 @@
 import {MdOutlineEmail} from "react-icons/md"
 import {FaPatreon, FaTwitter, FaTwitch} from "react-icons/fa"
 
+import "../App.css"
+
 function PermaFooter() {
   return (
     <div className="footer">

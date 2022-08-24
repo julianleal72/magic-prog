@@ -1,33 +1,38 @@
-.leftSide {
+.leftSideD {
     position:relative;
     float:left;
-    padding-left: 200px;
+    max-width:fit-content;
+    padding-left: 100px;
     padding-top: 40px
 }
 
-.rightSide {
+.rightSideD {
     position:relative;
     float:right;
     max-width: 600px;
     max-height: 200px;
     display:inline;
     padding-top: 45px;
-    padding-right: 200px;
+    padding-right: 100px;
 }
 .rightSideE {
     position:relative;
     float:right;
-    max-width: 250px;
+    max-width: fit-content;
     max-height: 200px;
     padding-top:10px;
 }
 .leftSideE {
     position:relative;
     float:left;
-    max-width: 250px;
+    max-width: fit-content;
     max-height: 200px;
 }
 
-.wrapper {
+.wrapperD {
     display:inline;
+}
+
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+    width: 300px;
 }

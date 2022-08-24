@@ -1,6 +1,6 @@
 import { NavLink} from "react-router-dom";
 import { Button } from "@mui/material";
-import "./Home.css"
+import "../App.css"
 
 function PermaBanner(){
 return(<NavLink to="/">

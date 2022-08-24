@@ -29,7 +29,7 @@ function User({ user, deleteUser }) {
         res
           .json()
           .then((data) =>
-            setErrors(Object.entries(data.errors).map((e) => `${e[0]} ${e[1]}`))
+            setErrors(Object.entries(data.errors).map((e) => `${e[1]}`))
           );
       }
     });

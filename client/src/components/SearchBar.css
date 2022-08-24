@@ -1,0 +1,24 @@
+.searchBar {
+    display: inline;
+    width: fit-content;
+    padding:20px
+}
+
+.searchChild1 {
+   width:300px;
+   position:relative;
+   display:inline;
+   float:left;
+}
+.searchChild2 {
+    width:300px;
+    position:relative;
+    top:8px;
+    display:inline
+}
+.searchChild3 {
+    width:300px;
+    position:relative;
+    float:right;
+    display:inline;
+}
