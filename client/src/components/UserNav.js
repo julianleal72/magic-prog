@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./UserNav.css";
 import { useState } from "react";
-import { Button } from "@mui/material";
 import {
   ProSidebar,
   Menu,
@@ -13,10 +12,7 @@ import {
 } from "react-pro-sidebar";
 
 import {
-  FiHome,
   FiLogOut,
-  FiArrowLeftCircle,
-  FiArrowRightCircle,
 } from "react-icons/fi";
 import {BsArrowsExpand, BsArrowsCollapse} from "react-icons/bs"
 import { GiSpellBook, GiMagicSwirl, GiCastle } from "react-icons/gi";

@@ -2,25 +2,33 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import OpenedPacks from "./OpenedPacks.js";
 import Pack from "./Pack.js";
+import { Button, Alert } from "@mui/material";
+import { GiOpenChest, GiBookmarklet } from "react-icons/gi";
+import { BiArrowFromLeft } from "react-icons/bi";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { RiEmotionHappyLine, RiEmotionUnhappyLine } from "react-icons/ri";
+import {MdOutlineRestartAlt} from "react-icons/md"
+
 
 function PackOpener() {
   let arr = [];
   const navigate = useNavigate();
   const location = useLocation();
-  const [goAgain, setGoAgain] = useState(false);
   const [errors, setErrors] = useState([]);
   const [packs, setPacks] = useState([]);
   const [openedAll, setOpenedAll] = useState(false);
   const [opened, setOpened] = useState(false);
   const [openedPacks, setOpenedPacks] = useState([]);
+  const [numPacks, setNumPacks] = useState(location.state.numPacks.numPacks);
+  const [alert, setAlert] = useState(false);
 
   useEffect(() => {
-    console.log(location.state.numPacks.numPacks);
-    console.log(location.state.set.set.name);
-    console.log(location.state.collection.collection);
+    //console.log(location.state.numPacks.numPacks);
+    //console.log(location.state.set.chosenSet)
+    //console.log(location.state.collection.collection);
     let i = 1;
-    while (i <= location.state.numPacks.numPacks) {
-      getPack(location.state.set.set.code);
+    while (i <= numPacks) {
+      getPack(location.state.set.chosenSet.code);
       i++;
     }
   }, []);
@@ -64,20 +72,20 @@ function PackOpener() {
   }
 
   function handleOpen() {
-    console.log(packs)
+    console.log(packs);
     if (!opened) {
       setOpened(true);
       setOpenedPacks([...openedPacks, packs[0]]);
     }
-    if (packs.length===1) setOpenedAll(true)
-    console.log(openedPacks)
+    if (packs.length === 1) setOpenedAll(true);
+    console.log(openedPacks);
   }
   function handleNext() {
-    let temp = [...packs]
+    let temp = [...packs];
     if (opened) {
-      temp.shift()
+      temp.shift();
       //console.log(temp)
-      setPacks([...temp])
+      setPacks([...temp]);
       setOpened(false);
     }
   }
@@ -85,51 +93,163 @@ function PackOpener() {
   function handleDiscard() {
     navigate("/drafter");
   }
+
   function goagain() {
-    // setOpened([])
-    // setPacks([])
-    // setOpened(false)
-    // setOpenedAll(false)
-    //setGoAgain(true);
-    window.location.reload(false)
+    setNumPacks(numPacks);
+    setOpened([]);
+    setOpened(false);
+    setOpenedAll(false);
+    let i = 1;
+    while (i <= numPacks) {
+      getPack(location.state.set.chosenSet.code);
+      i++;
+    }
   }
 
-  function condense(){
-    let jesus = []
-    console.log(openedPacks)
-    openedPacks.forEach(element => {
-      jesus = jesus.concat(element)
+  function condense() {
+    let jesus = [];
+    console.log(openedPacks);
+    openedPacks.forEach((element) => {
+      jesus = jesus.concat(element);
     });
-    console.log(jesus)
-    return jesus
+    console.log(jesus);
+    return jesus;
   }
   //don't display dupes and just display how many copies
+
+  function deleteAlert() {
+    setAlert(true);
+  }
+
+  function undoDelete() {
+    setAlert(false);
+  }
 
   return (
     <div>
       <div>
-      {openedAll ? <div>
-        <button onClick={handleCommit}>Add to Collection</button>
-        <button onClick={goagain}>Draft Again</button>
-      </div> : null}
-        {openedAll ? null: <div>{opened ? <button onClick={handleNext}>Next Pack</button> : null}
-       {opened ? null : <button onClick={handleOpen}>Open Pack</button>}</div>}
+        <h3>{numPacks} packs of {location.state.set.chosenSet.name}</h3>
+        {openedAll ? (
+          <div style={{ display: "inline" }}>
+            <Button variant="contained" color="success" startIcon={<GiBookmarklet/>} onClick={handleCommit}>Add to Collection</Button>
+            <Button startIcon={<MdOutlineRestartAlt/>} variant="contained" color="secondary" onClick={goagain}>Draft Again</Button>
+            {alert ? null : (
+              <Button
+                variant="contained"
+                onClick={deleteAlert}
+                startIcon={<DeleteIcon />}
+                color="error"
+              >
+                Discard Draft
+              </Button>
+            )}
+            {alert ? (
+              <Alert
+                className="alert"
+                severity="warning"
+                action={
+                  <div className="alertMessage">
+                    <Button
+                      variant="outlined"
+                      onClick={undoDelete}
+                      color="success"
+                      startIcon={<RiEmotionHappyLine />}
+                    >
+                      Just Kidding, There's Resale Value
+                    </Button>
+                    <Button
+                      onClick={handleDiscard}
+                      variant="outlined"
+                      endIcon={<RiEmotionUnhappyLine />}
+                      color="error"
+                    >
+                      Uh, Yeah, These Pulls Were Trash
+                    </Button>
+                  </div>
+                }
+              >
+                Are you sure you want to release these cards to the wind?
+              </Alert>
+            ) : null}
+          </div>
+        ) : null}
+        <br />
+        {openedAll ? null : (
+          <div>
+            {opened ? (
+              <Button
+                variant="outlined"
+                color="success"
+                startIcon={<BiArrowFromLeft />}
+                onClick={handleNext}
+              >
+                Next Pack
+              </Button>
+            ) : null}
+            {opened ? null : (
+              <Button
+                variant="contained"
+                startIcon={<GiOpenChest />}
+                onClick={handleOpen}
+              >
+                Open Pack
+              </Button>
+            )}
+            <h5>
+              Packs Left: {numPacks - openedPacks.length}/{numPacks}
+            </h5>
+          </div>
+        )}
       </div>
       {opened ? <Pack pack={packs[0]} /> : null}
-      <h5>
-        Packs Left: {location.state.numPacks.numPacks - openedPacks.length}/
-        {location.state.numPacks.numPacks}
-      </h5>
-
-      {/* ) : (
-        <button onClick={handleOpenAll}>Open All Remaining</button>
-      )} */}
       <div>
-        <button onClick={handleDiscard}>Discard Draft</button>
+      <br />
+      <div style={{ display: "inline" }}>
+      {openedAll ?
+          <div style={{ display: "inline" }}>
+            <Button variant="contained" color="success" startIcon={<GiBookmarklet/>} onClick={handleCommit}>Add to Collection</Button>
+            <Button startIcon={<MdOutlineRestartAlt/>} variant="contained" color="secondary" onClick={goagain}>Draft Again</Button></div>:null}
+        {alert ? null : (
+          <Button
+            variant="contained"
+            onClick={deleteAlert}
+            startIcon={<DeleteIcon />}
+            color="error"
+          >
+            Discard Draft
+          </Button>
+        )}
+        {alert ? (
+          <Alert
+            className="alert"
+            severity="warning"
+            action={
+              <div className="alertMessage">
+                <Button
+                  variant="outlined"
+                  onClick={undoDelete}
+                  color="success"
+                  startIcon={<RiEmotionHappyLine />}
+                >
+                  Just Kidding, There's Resale Value
+                </Button>
+                <Button
+                  onClick={handleDiscard}
+                  variant="outlined"
+                  endIcon={<RiEmotionUnhappyLine />}
+                  color="error"
+                >
+                  Uh, Yeah, These Pulls Were Trash
+                </Button>
+              </div>
+            }
+          >
+            Are you sure you want to release these cards to the wind?
+          </Alert>
+        ) : null}
+        </div>
       </div>
-      <div>
-
-      </div>
+      <OpenedPacks/>
     </div>
   );
 }

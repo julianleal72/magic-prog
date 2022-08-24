@@ -1,0 +1,33 @@
+.leftSide {
+    position:relative;
+    float:left;
+    padding-left: 200px;
+    padding-top: 40px
+}
+
+.rightSide {
+    position:relative;
+    float:right;
+    max-width: 600px;
+    max-height: 200px;
+    display:inline;
+    padding-top: 45px;
+    padding-right: 200px;
+}
+.rightSideE {
+    position:relative;
+    float:right;
+    max-width: 250px;
+    max-height: 200px;
+    padding-top:10px;
+}
+.leftSideE {
+    position:relative;
+    float:left;
+    max-width: 250px;
+    max-height: 200px;
+}
+
+.wrapper {
+    display:inline;
+}

@@ -23,8 +23,6 @@ function App() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [sets, setSets] = useState([]);
-  const [sets1, setSets1] = useState([]);
-  const [sets2, setSets2] = useState([]);
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -36,7 +34,7 @@ function App() {
       } else {
         console.log("Nope");
       }
-    });
+    }).then(getSets()).then(removeDupes())
   }, []);
 
   function handleLogin(user) {
@@ -59,13 +57,63 @@ function App() {
     setUser(updatedUser);
   }
 
+
+  function getSets() {
+    console.log("run it")
+    let setArr = [];
+    fetch(`https://api.magicthegathering.io/v1/sets?page=1`)
+      .then((r) => r.json())
+      .then((r) => {
+        r.sets.forEach((element) => {
+          if (element.booster) {
+            //sort by 3 character set code, sort by online, sort by product type (expansion, masters, supplemental, etc)
+            setArr.push({
+              name: element.name,
+              code: element.code,
+              release: element.releaseDate,
+            });
+          }
+        });
+        setSets([...sets].concat(setArr));
+      });
+    fetch(`https://api.magicthegathering.io/v1/sets?page=2`)
+      .then((r) => r.json())
+      .then((r) => {
+        r.sets.forEach((element) => {
+          if (element.booster) {
+            setArr.push({
+              name: element.name,
+              code: element.code,
+              release: element.releaseDate,
+            });
+          }
+        });
+        setSets([...sets].concat(setArr))
+      })
+  }
+
+  function removeDupes(){
+    let unique = [];
+    sets.forEach((x) => {
+      if (
+        !unique.find(
+          (y) =>
+            JSON.stringify(x) === JSON.stringify(y)
+        )
+      )
+        unique.push(x);
+    });
+    console.log(unique);
+    setSets(unique)
+  }
+
   return (
     <div className="app">
       <PermaBanner/>
       {user ? <UserNav user={user} handleLogout={handleLogout} /> : null}
       <Routes>
         <Route exact path="/" element={<Home user={user} />} />
-        <Route path="/drafter" element={<Drafter user={user} />} />
+        <Route path="/drafter" element={<Drafter user={user} sets={sets} setSets={setSets}/>} />
         <Route path="/packopener" element={<PackOpener />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<SignUp />} />

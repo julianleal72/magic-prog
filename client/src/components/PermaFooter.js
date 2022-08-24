@@ -26,7 +26,6 @@ function PermaFooter() {
           <FaTwitch/>
         </a>&nbsp;&nbsp;&nbsp;&nbsp;
         <a
-          class="accented-link"
           href="mailto:hexdrinkers@gmail.com?subject=Site%20Link"
         >
           <MdOutlineEmail/>

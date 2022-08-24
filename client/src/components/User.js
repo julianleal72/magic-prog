@@ -5,8 +5,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Alert, Box } from "@mui/material";
-import { styled } from "@mui/styles";
+import { Alert} from "@mui/material";
 import "./User.css";
 import { FiEdit3 } from "react-icons/fi";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -17,14 +16,6 @@ function User({ user, deleteUser }) {
   const navigate = useNavigate();
   const params = useParams();
   const [alert, setAlert] = useState(false);
-
-  const MyButton = styled(Button)({
-    color: "red",
-  });
-
-  const MySecondButton = styled(Button)({
-    color: "green",
-  });
 
   function handleDelete() {
     fetch(`/users/${user.id}`, {

@@ -1,0 +1,5 @@
+.pack {
+    display: grid;
+    width:800px;
+    grid-template-columns:repeat(5, 1fr);
+}
