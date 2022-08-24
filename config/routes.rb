@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "/me", to: "users#me"
   get '*path', to: 'fallback#index', constraints: ->(req) { !req.xhr? && req.format.html? }
 
+  resources :fixins, only: [:index]
   resources :collections
   resources :users
   resources :decks

@@ -39,39 +39,39 @@ function SearchBar({ setDisplayedCards, condensedCollection, displayedCards }) {
     setDisplayedCards(toSet);
   }
 
-  function handleSearchByType(e) {
-    e.preventDefault();
-    setType(e.target.value);
-    console.log(e.target.value);
-    let toSet = condensedCollection;
-    if (e.target.value !== "All") {
-      toSet = condensedCollection.filter((card) =>
-        card.printing.info.type
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase())
-      );
-    }
-    setDisplayedCards(toSet);
-  }
+  //   function handleSearchByType(e) {
+  //     e.preventDefault();
+  //     setType(e.target.value);
+  //     console.log(e.target.value);
+  //     let toSet = condensedCollection;
+  //     if (e.target.value !== "All") {
+  //       toSet = condensedCollection.filter((card) =>
+  //         card.printing.info.type
+  //           .toLowerCase()
+  //           .includes(e.target.value.toLowerCase())
+  //       );
+  //     }
+  //     setDisplayedCards(toSet);
+  //   }
 
-  function handleSearchBySubType(e) {
-    setSubType(e.target.value);
-    console.log(e.target.value);
-    let toSet = [
-      ...condensedCollection.filter((card) =>
-        card.printing.info.type.toLowerCase().includes(type.toLowerCase())
-      ),
-    ];
-    console.log(toSet);
-    if (e.target.value !== "All") {
-      toSet = toSet.filter((card) =>
-        card.printing.info.type
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase())
-      );
-    }
-    setDisplayedCards(toSet);
-  }
+  //   function handleSearchBySubType(e) {
+  //     setSubType(e.target.value);
+  //     console.log(e.target.value);
+  //     let toSet = [
+  //       ...condensedCollection.filter((card) =>
+  //         card.printing.info.type.toLowerCase().includes(type.toLowerCase())
+  //       ),
+  //     ];
+  //     console.log(toSet);
+  //     if (e.target.value !== "All") {
+  //       toSet = toSet.filter((card) =>
+  //         card.printing.info.type
+  //           .toLowerCase()
+  //           .includes(e.target.value.toLowerCase())
+  //       );
+  //     }
+  //     setDisplayedCards(toSet);
+  //   }
 
   function handleChange(e) {
     let { value, name } = e.target;
@@ -81,24 +81,35 @@ function SearchBar({ setDisplayedCards, condensedCollection, displayedCards }) {
     if (name === "cardText") setCardText(value);
     if (name === "type") setType(value);
     if (name === "subtype") setSubType(value);
+    grandSearch();
   }
 
   function grandSearch() {
     let toSet = [];
+
     if (type !== "All") {
       toSet = [
         ...condensedCollection.filter((card) =>
           card.printing.info.type.toLowerCase().includes(type.toLowerCase())
         ),
       ];
-      if (e.target.value !== "All") {
+      if (subtype !== "All") {
         toSet = toSet.filter((card) =>
-          card.printing.info.type
-            .toLowerCase()
-            .includes(e.target.value.toLowerCase())
+          card.printing.info.type.toLowerCase().includes(subtype.toLowerCase())
         );
       }
     }
+
+    toSet = toSet.filter((card) =>
+      card.printing.info.name.toLowerCase().includes(cardName.toLowerCase())
+    );
+    toSet = toSet.filter((card) => {
+      if ("text" in card.printing.info) {
+        return card.printing.info.text
+          .toLowerCase()
+          .includes(cardText.toLowerCase());
+      } else return false;
+    });
   }
 
   // function handleSearchByManaCost() {
@@ -287,7 +298,7 @@ function SearchBar({ setDisplayedCards, condensedCollection, displayedCards }) {
             <Select
               sx={{ padding: 0.5 }}
               name="subtype"
-              onChange={handleSearchBySubType}
+              onChange={handleChange}
               label={"Search by subtype"}
               value={subtype}
               defaultValue={subtype}

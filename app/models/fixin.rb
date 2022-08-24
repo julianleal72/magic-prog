@@ -1,0 +1,2 @@
+class Fixin < ApplicationRecord
+end

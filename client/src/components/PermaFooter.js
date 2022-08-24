@@ -8,6 +8,7 @@ function PermaFooter() {
   return (
     <div className="footer">
         <h5 style={{float:"left"}}>&copy; Hexdrinkers 2022</h5>
+        <div><p>Wizards of the Coast, Magic: The Gathering, and their logos are trademarks of Wizards of the Coast LLC. © 1995-2022 Wizards. All rights reserved. The Hexdrinkers are not affiliated with Wizards of the Coast LLC.</p></div>
         <div style={{display:"inline-block", width:200, float:"right", position:"relative", top:20, right:-50}}>
         <a
           href="https://twitter.com/hexdrinkers"
