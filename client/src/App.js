@@ -36,9 +36,6 @@ function App() {
         console.log("Nope");
       }
     }).then(getSets()).then(removeDupes())
-  }, []);
-
-  useEffect(()=> {
     fetch("/fixins").then((response) => {
       if(response.ok) {
         response.json().then((fixinArr) => {
@@ -48,7 +45,19 @@ function App() {
       }
       else console.log("No fixins 4 u")
     })
-  }, [])
+  }, []);
+
+  // useEffect(()=> {
+  //   fetch("/fixins").then((response) => {
+  //     if(response.ok) {
+  //       response.json().then((fixinArr) => {
+  //         setFixins(fixinArr)
+  //         console.log(fixinArr)
+  //       })
+  //     }
+  //     else console.log("No fixins 4 u")
+  //   })
+  // }, [])
 
   function handleLogin(user) {
     setUser(user);

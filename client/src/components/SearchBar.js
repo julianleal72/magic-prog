@@ -100,7 +100,7 @@ function SearchBar({ setDisplayedCards, condensedCollection, displayedCards }) {
           </Select>
         </FormControl>
         {type === "Creature" ? (
-          <FormControl sx={{ width: 200, padding: 0.8 }}>
+          <FormControl sx={{ width: 200, padding: 0.8, bottom:8 }}>
             <InputLabel>Search by creature type</InputLabel>
             <Input
               name="subtype"

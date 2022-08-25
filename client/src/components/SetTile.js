@@ -1,18 +1,15 @@
-import {Card, CardHeader, CardMedia} from "@mui/material";
+import {Card, CardHeader, CardMedia, CardContent} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import {useState} from "react";
 //import NewCollectionForm from "./NewCollectionForm.js"
 
-function SetTile({ set, user, fixins }) {
+function SetTile({ set, user, fixin }) {
   // const [newCollection, setNewCollection] = useState(false)
   // function handleNC() {
   //   setNewCollection(true)
   // }
   //  {newCollection ? <NewCollectionForm user={user} drafter ={true}></NewCollectionForm> : <button onClick={handleNC}>Create a New Collection</button>}
-  const [fixin, setFixin] = useState(
-    fixins.filter(element => element.code === set.code)
-  );
-  console.log(fixin)
+
   return (
     <div>
       <Card sx={{ width: 200 }}>
@@ -21,7 +18,9 @@ function SetTile({ set, user, fixins }) {
           title={`${set.name} - ${set.code}`}
           subheader={`Released ${set.release}`}
         />
-        <CardMedia component="img" image={fixin.booster}/>
+        <CardContent>
+        <img src={fixin.booster} alt="booster pic"/>
+        </CardContent>
       </Card>
     </div>
   );

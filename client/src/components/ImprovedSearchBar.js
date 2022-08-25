@@ -1,77 +1,24 @@
 import Checkbox from "@mui/material/Checkbox";
 import FormControl from "@mui/material/FormControl";
 import { useState } from "react";
-import { yellow, blue, purple, red, green } from "@mui/material/colors";
+//import { yellow, blue, purple, red, green } from "@mui/material/colors";
 import { Select, Input, FormGroup } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import "./SearchBar.css";
 
-function SearchBar({ setDisplayedCards, condensedCollection, displayedCards }) {
-  const [whiteChecked, setWhiteChecked] = useState(false);
-  const [blueChecked, setBlueChecked] = useState(false);
-  const [blackChecked, setBlackChecked] = useState(false);
-  const [redChecked, setRedChecked] = useState(false);
-  const [greenChecked, setGreenChecked] = useState(false);
+function ImprovedSearchBar({ setDisplayedCards, condensedCollection, displayedCards }) {
+  // const [whiteChecked, setWhiteChecked] = useState(false);
+  // const [blueChecked, setBlueChecked] = useState(false);
+  // const [blackChecked, setBlackChecked] = useState(false);
+  // const [redChecked, setRedChecked] = useState(false);
+  // const [greenChecked, setGreenChecked] = useState(false);
+  const [temp, setTemp] = useState(false)
   const [type, setType] = useState("All");
   const [subtype, setSubType] = useState("All");
   const [cardName, setCardName] = useState("");
   const [cardText, setCardText] = useState("");
 
-  function handleSearchByName(e) {
-    e.preventDefault();
-    let toSet = condensedCollection.filter((card) =>
-      card.printing.info.name
-        .toLowerCase()
-        .includes(e.target.value.toLowerCase())
-    );
-    setDisplayedCards(toSet);
-  }
-  function handleSearchByText(e) {
-    e.preventDefault();
-    let toSet = condensedCollection.filter((card) => {
-      if ("text" in card.printing.info) {
-        return card.printing.info.text
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase());
-      } else return false;
-    });
-    setDisplayedCards(toSet);
-  }
-
-  //   function handleSearchByType(e) {
-  //     e.preventDefault();
-  //     setType(e.target.value);
-  //     console.log(e.target.value);
-  //     let toSet = condensedCollection;
-  //     if (e.target.value !== "All") {
-  //       toSet = condensedCollection.filter((card) =>
-  //         card.printing.info.type
-  //           .toLowerCase()
-  //           .includes(e.target.value.toLowerCase())
-  //       );
-  //     }
-  //     setDisplayedCards(toSet);
-  //   }
-
-  //   function handleSearchBySubType(e) {
-  //     setSubType(e.target.value);
-  //     console.log(e.target.value);
-  //     let toSet = [
-  //       ...condensedCollection.filter((card) =>
-  //         card.printing.info.type.toLowerCase().includes(type.toLowerCase())
-  //       ),
-  //     ];
-  //     console.log(toSet);
-  //     if (e.target.value !== "All") {
-  //       toSet = toSet.filter((card) =>
-  //         card.printing.info.type
-  //           .toLowerCase()
-  //           .includes(e.target.value.toLowerCase())
-  //       );
-  //     }
-  //     setDisplayedCards(toSet);
-  //   }
 
   function handleChange(e) {
     let { value, name } = e.target;
@@ -81,12 +28,10 @@ function SearchBar({ setDisplayedCards, condensedCollection, displayedCards }) {
     if (name === "cardText") setCardText(value);
     if (name === "type") setType(value);
     if (name === "subtype") setSubType(value);
-    grandSearch();
   }
 
   function grandSearch() {
     let toSet = [];
-
     if (type !== "All") {
       toSet = [
         ...condensedCollection.filter((card) =>
@@ -94,60 +39,23 @@ function SearchBar({ setDisplayedCards, condensedCollection, displayedCards }) {
         ),
       ];
       if (subtype !== "All") {
-        toSet = toSet.filter((card) =>
+        toSet = [...toSet].filter((card) =>
           card.printing.info.type.toLowerCase().includes(subtype.toLowerCase())
         );
       }
     }
-
-    toSet = toSet.filter((card) =>
+    toSet = [...toSet].filter((card) =>
       card.printing.info.name.toLowerCase().includes(cardName.toLowerCase())
     );
-    toSet = toSet.filter((card) => {
+    toSet = [...toSet].filter((card) => {
       if ("text" in card.printing.info) {
         return card.printing.info.text
           .toLowerCase()
           .includes(cardText.toLowerCase());
       } else return false;
     });
+    setDisplayedCards(toSet)
   }
-
-  // function handleSearchByManaCost() {
-  //   let toSet = [...condensedCollection];
-  //   if (whiteChecked) {
-  //     toSet = toSet.filter((card) => {
-  //       if (card.printing.info.colors)
-  //         card.printing.info.colors.includes("White");
-  //       else return false;
-  //     });
-  //   }
-  //   if (blueChecked) {
-  //     toSet = toSet.filter((card) => {
-  //       if (card.printing.info.colors)
-  //         card.printing.info.colors.includes("Blue");
-  //     });
-  //   }
-  //   if (blackChecked) {
-  //     toSet = toSet.filter((card) => {
-  //       if (card.printing.info.colors)
-  //         card.printing.info.colors.includes("Black");
-  //     });
-  //   }
-  //   if (redChecked) {
-  //     toSet = toSet.filter((card) => {
-  //       if (card.printing.info.colors)
-  //         card.printing.info.colors.includes("Red");
-  //     });
-  //   }
-  //   if (greenChecked) {
-  //     toSet = toSet.filter((card) => {
-  //       if (card.printing.info.colors)
-  //         card.printing.info.colors.includes("Green");
-  //     });
-  //   }
-  //   console.log(toSet);
-  //   setDisplayedCards(toSet);
-  // }
 
   return (
     <div className="searchBar">
@@ -352,4 +260,4 @@ function SearchBar({ setDisplayedCards, condensedCollection, displayedCards }) {
   );
 }
 
-export default SearchBar;
+export default ImprovedSearchBar;

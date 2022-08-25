@@ -15,10 +15,9 @@ import {GiStarSwirl} from "react-icons/gi"
 function Drafter({ user, sets, setSets, fixins }) {
   const [currentFilter, setCurrentFilter] = useState("code");
   const [chosenSet, setChosenSet] = useState(sets[0]);
+  const [chosenFixin, setChosenFixin] = useState(fixins.find(element => element.code === chosenSet.code))
   const [numPacks, setNumPacks] = useState(3);
-  const [collection, setCollection] = useState(
-    parseInt(user.collections[0].id)
-  );
+  const [collection, setCollection] = useState("");
 
   useEffect(() => {
     console.log(sets);
@@ -28,6 +27,7 @@ function Drafter({ user, sets, setSets, fixins }) {
 
   function handleChange(e) {
     let set = sets.find((element) => element.code === e.target.value);
+    setChosenFixin(fixins.find(element => element.code === set.code))
     setChosenSet(set);
   }
   function handleCollectChange(e) {
@@ -98,7 +98,7 @@ function Drafter({ user, sets, setSets, fixins }) {
         </div>
         <div className="rightSideD">
           <div className="leftSideE">
-            {chosenSet ? <SetTile set={chosenSet} user={user} fixins = {fixins}/> : null}
+            {chosenSet ? <SetTile set={chosenSet} user={user} fixin = {chosenFixin}/> : null}
           </div>
           <div className="rightSideE">
             <FormControl sx={{ padding: 0.8 }} size="small">

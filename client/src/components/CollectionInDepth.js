@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import CardCollectTile from "./CardCollectTile.js";
 import { Grid, Button, Box } from "@mui/material";
 import { Link } from "react-router-dom";
+import ImprovedSearchBar from "./ImprovedSearchBar.js";
 import SearchBar from "./SearchBar.js";
 import { FcPlus } from "react-icons/fc";
 import CollectionHeader from "./CollectionHeader.js";
