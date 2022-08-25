@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to the Hexdrinkers Progression and Pack Opener (made by Jules)
 
-Things you may want to cover:
+Users can:
+    Create an account and sign In
+    Create collections
+    Draft cards from packs of most of MTG's sets and add those to their collections
+    Create decks using cards from the associated collection
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Enjoy!
