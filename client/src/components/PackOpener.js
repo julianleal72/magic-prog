@@ -198,7 +198,7 @@ function PackOpener() {
                 Open Pack
               </Button>
               <br />
-              <img src={packArt} alt="packBabyyy"/>
+              <img src={packArt} alt="packBabyyy" style={{maxWidth:250}}/>
               </div>
             )}
           </div>
