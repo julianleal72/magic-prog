@@ -1,8 +1,9 @@
 
 .footer {
-    display:inline-block;
+    /* display:inline-block;
     width: 1200px;
-    position: relative;
+    position: relative; */
+    margin-top:auto
 }
 
 .link {
@@ -10,3 +11,8 @@
     padding: 10px;
 }
 
+.stretchIt {
+    min-height: 72vh;
+    display: flex;
+    flex-direction: column;
+}

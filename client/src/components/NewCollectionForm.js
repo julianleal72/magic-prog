@@ -9,7 +9,7 @@ import {
   GiCardDiscard,
 } from "react-icons/gi";
 
-function NewCollectionForm({ user, drafter }) {
+function NewCollectionForm({ user, setUser, drafter }) {
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
   const [formData, setFormData] = useState({});
@@ -48,6 +48,11 @@ function NewCollectionForm({ user, drafter }) {
       if (r.ok) {
         r.json().then((collection) => {
           console.log(collection);
+          let temp={...user}
+          // let col = user.collections
+          // col.push(collection)
+          temp["collections"] = [...user.collections, collection]
+          setUser(temp)
           if (!drafter) navigate(`/user/collections`);
           else setReload(!reload);
         });

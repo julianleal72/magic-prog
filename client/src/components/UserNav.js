@@ -64,7 +64,7 @@ function UserNav({ user, handleLogout }) {
             </MenuItem>
             <MenuItem icon={<GiCastle />}>
               <Link to={`/`} className="button">
-                Homepage
+                Home
               </Link>
             </MenuItem>
           </Menu>

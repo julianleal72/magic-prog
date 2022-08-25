@@ -47,18 +47,6 @@ function App() {
     })
   }, []);
 
-  // useEffect(()=> {
-  //   fetch("/fixins").then((response) => {
-  //     if(response.ok) {
-  //       response.json().then((fixinArr) => {
-  //         setFixins(fixinArr)
-  //         console.log(fixinArr)
-  //       })
-  //     }
-  //     else console.log("No fixins 4 u")
-  //   })
-  // }, [])
-
   function handleLogin(user) {
     setUser(user);
     console.log(user);
@@ -131,11 +119,9 @@ function App() {
 
   return (
     <div className="app">
-      <div>
-      <div>
       <PermaBanner/>
-      </div>
-      {user ? <UserNav user={user} handleLogout={handleLogout} /> : null}
+      <div class="stretchIt">
+      {user ? <UserNav user={user} handleLogout={handleLogout}/> : null}
       <Routes>
         <Route exact path="/" element={<Home user={user} />} />
         <Route path="/drafter" element={<Drafter user={user} sets={sets} setSets={setSets} fixins={fixins}/>} />
@@ -156,7 +142,7 @@ function App() {
         />
         <Route
           path="/collections/new"
-          element={<NewCollectionForm user={user} drafter={false} />}
+          element={<NewCollectionForm user={user} drafter={false} setUser={setUser}/>}
         />
         <Route path="/user/collections/:id" element={<CollectionInDepth />} />
         <Route

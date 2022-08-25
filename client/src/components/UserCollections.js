@@ -5,7 +5,7 @@ import { Grid, Button } from "@mui/material";
 import "./UserDecks.css";
 import {FcPlus} from "react-icons/fc"
 
-function UserCollections({user}){
+function UserCollections({user, setUser}){
     const [collections, setCollections] = useState([]);
     const [reload, setReload] = useState(false)
 
@@ -52,7 +52,7 @@ function UserCollections({user}){
             justifyContent="center"
             className="cardContainer"
           >
-            {collections.map((collection) => <Collection collection={collection} user={user} reload={handleReload}/>
+            {collections.map((collection) => <Collection collection={collection} user={user} setUser={setUser} reload={handleReload}/>
             )}
             </Grid>
             : "You have no collections! Try creating one."}

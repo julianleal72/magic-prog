@@ -117,11 +117,12 @@ function CollectionInDepth() {
       ) : null}</div>}
       <br />
       <br />
+      {condensedCollection.length > 0 ?
         <div className="cardsContainer">
           {displayedCards.map((card) => (
             <CardCollectTile key={card.printing.name} card={card} />
-          ))}
-        </div>
+          ))} 
+        </div> : <h3>Whoops! There's nothing here...</h3>}
     </div>
   );
 }
