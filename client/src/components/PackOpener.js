@@ -20,11 +20,13 @@ function PackOpener() {
   const [openedPacks, setOpenedPacks] = useState([]);
   const [numPacks, setNumPacks] = useState(location.state.numPacks.numPacks);
   const [alert, setAlert] = useState(false);
+  const [packArt, setPackArt] = useState(location.state.fixin.chosenFixin.booster)
 
   useEffect(() => {
     //console.log(location.state.numPacks.numPacks);
     //console.log(location.state.set.chosenSet)
     //console.log(location.state.collection.collection);
+    //console.log(packArt)
     let i = 1;
     while (i <= numPacks) {
       getPack(location.state.set.chosenSet.code);
@@ -186,7 +188,8 @@ function PackOpener() {
                 Next Pack
               </Button>
             ) : null}
-            {opened ? null : (
+            {opened ? null 
+            : (
               <div><Button
                 variant="contained"
                 startIcon={<GiOpenChest />}
@@ -194,8 +197,8 @@ function PackOpener() {
               >
                 Open Pack
               </Button>
-              
-              {/* <img></img> */}
+              <br />
+              <img src={packArt} alt="packBabyyy"/>
               </div>
             )}
           </div>
@@ -250,9 +253,14 @@ function PackOpener() {
         ) : null}
         </div>
       </div>
-      <div>
-        
-      </div>
+      <br />
+      <br />
+      <div style={{display:"inline", width:900}}>
+          {openedPacks.map( pack => pack.map((card) => (
+              <img src={card.imageUrl} style={{width:60}}
+              />
+          )))}
+        </div>
     </div>
   );
 }

@@ -103,17 +103,43 @@
 # Fixin.create(code: "MM3", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Modern-Masters-2017-set-symbol-300x210.png", booster: "https://product-images.tcgplayer.com/fit-in/585x585/127068.jpg")
 # Fixin.create(code: "AKH", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Amonkhet-set-symbol.png", booster: "https://product-images.tcgplayer.com/fit-in/585x585/127173.jpg" )
 # Fixin.create(code: "HOU", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Hour-of-Devastation-set-symbol.png", booster: "https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/c/ce/HOU_booster.png/revision/latest/scale-to-width-down/180?cb=20170623163340" )
-Fixin.create(code: "", symbol: "", booster: "")
-
-
-
-
-
-
-
-
-
-
+# Fixin.create(code: "XLN", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Ixalan-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Ixalan%2BBooster%2BPack%2B%253Csealed%253E%2B%255BXLN%255D.jpg")
+# Fixin.create(code: "IMA", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Iconic-Masters-set-symbol-300x300.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Iconic%2BMasters%2BBooster%2BPack%2B%253Csealed%253E%2B%255BIMA%255D.jpg")
+# Fixin.create(code: "UST", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Unstable-set-symbol.png", booster: "https://product-images.tcgplayer.com/fit-in/656x656/149403.jpg")
+# Fixin.create(code: "RIX", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Rivals-of-Ixalan-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Rivals%2Bof%2BIxalan%2BBooster%2BPack%2B%253Csealed%253E%2B%255BRIX%255D.jpg")
+# Fixin.create(code: "A25", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Masters-25-set-symbol-300x300.png", booster: "https://product-images.tcgplayer.com/fit-in/656x656/157861.jpg")
+# Fixin.create(code: "DOM", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Dominaria-set-symbol-229x300.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Dominaria%2BBooster%2BPack%2B%253Csealed%253E%2B%255BDOM%255D.jpg")
+# Fixin.create(code: "BBD", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Battlebond-set-symbol-300x300.png", booster: "https://cdn1.mtggoldfish.com/images/h/Battlebond-Booster-Pack-sealed-BBD-672.jpg")
+# Fixin.create(code: "M19", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Core-Set-2019-set-symbol-300x300.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Core%2BSet%2B2019%2BBooster%2BPack%2B%253Csealed%253E%2B%255BM19%255D.jpg")
+# Fixin.create(code: "GRN", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Guilds-of-Ravnica-set-symbol-300x176.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Guilds%2Bof%2BRavnica%2BBooster%2BPack%2B%253Csealed%253E%2B%255BGRN%255D.jpg")
+# Fixin.create(code: "UMA", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Ultimate-Masters-set-symbol-300x300.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Ultimate%2BMasters%2BBooster%2BPack%2B%253Csealed%253E%2B%255BUMA%255D.jpg")
+# Fixin.create(code: "RNA", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Ravnica-Allegiance-set-symbol-300x201.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Ravnica%2BAllegiance%2BBooster%2BPack%2B%253Csealed%253E%2B%255BRNA%255D.jpg")
+# Fixin.create(code: "WAR", symbol: "https://draftsim.com/wp-content/uploads/2021/11/War-of-the-Spark-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/War%2Bof%2Bthe%2BSpark%2BBooster%2BPack%2B%253Csealed%253E%2B%255BWAR%255D.jpg")
+# Fixin.create(code: "MH1", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Modern-Horizons-set-symbol-300x182.png", booster: "https://cdn1.mtggoldfish.com/images/h/Modern-Horizons-Booster-Pack-sealed-MH1-672.jpg")
+# Fixin.create(code: "M20", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Core-Set-2020-set-symbol-300x134.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Core%2BSet%2B2020%2BBooster%2BPack%2B%253Csealed%253E%2B%255BM20%255D.jpg")
+# Fixin.create(code: "ELD", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Throne-of-Eldraine-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/h/Throne-of-Eldraine-Draft-Booster-Pack-sealed-ELD-672.jpg")
+# Fixin.create(code: "THB", symbol: "https://draftsim.com/wp-content/uploads/2022/01/Theros-Beyond-Death-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Theros%253A%2BBeyond%2BDeath%2BDraft%2BBooster%2BPack%2B%253Csealed%253E%2B%255BTHB%255D.jpg")
+# Fixin.create(code: "IKO", symbol: "https://draftsim.com/wp-content/uploads/2020/03/ikoria-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Ikoria%253A%2BLair%2Bof%2BBehemoths%2BBooster%2BPack%2B%253Csealed%253E%2B%255BIKO%255D.jpg")
+# Fixin.create(code: "JMP", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Jumpstart-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Jumpstart%2BBooster%2BPack%2B%253Csealed%253E%2B%255BJMP%255D.jpg")
+# Fixin.create(code: "M21", symbol: "https://draftsim.com/wp-content/uploads/2020/06/Core-Set-2021-set-symbol-300x134.png", booster: "https://cdn1.mtggoldfish.com/images/h/Core-Set-2021-Draft-Booster-Pack-sealed-M21-672.jpg")
+# Fixin.create(code: "2XM", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Double-Masters-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/h/Double-Masters-Booster-Pack-sealed-2XM-672.jpg")
+# Fixin.create(code: "ZNR", symbol: "https://draftsim.com/wp-content/uploads/2019/12/zendikar-rising-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/h/Zendikar-Rising-Draft-Booster-Pack-sealed-ZNR-672.jpg")
+# Fixin.create(code: "CMR", symbol: "https://draftsim.com/wp-content/uploads/2020/08/Commander-Legends-set-icon.png", booster: "https://cdn1.mtggoldfish.com/images/h/Commander-Legends-Draft-Booster-Pack-sealed-CMR-672.jpg")
+# Fixin.create(code: "KHM", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Kaldheim-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/h/Kaldheim-Draft-Booster-Pack-sealed-KHM-672.jpg")
+# Fixin.create(code: "TSR", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Time-Spiral-Remastered-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/h/Time-Spiral-Remastered-Draft-Booster-Pack-sealed-TSR-672.jpg")
+# Fixin.create(code: "STX", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Strixhaven-School-of-Mages-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/h/Strixhaven-School-of-Mages-Draft-Booster-Pack-sealed-STX-672.jpg")
+# Fixin.create(code: "MH2", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Modern-Horizons-2-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/h/Modern-Horizons-2-Set-Booster-Pack-sealed-MH2-672.jpg")
+# Fixin.create(code: "AFR", symbol: "https://draftsim.com/wp-content/uploads/2021/05/Adventures-in-the-Forgotten-Realms-set-symbol-259x300.png", booster: "https://cdn1.mtggoldfish.com/images/h/Adventures-in-the-Forgotten-Realms-Draft-Booster-Pack-sealed-AFR-672.jpg")
+# Fixin.create(code: "MID", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Innistrad-Midnight-Hunt-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/h/Innistrad-Midnight-Hunt-Draft-Booster-Pack-sealed-MID-672.jpg")
+# Fixin.create(code: "VOW", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Innistrad-Crimson-Vow-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/h/Innistrad-Crimson-Vow-Draft-Booster-Pack-sealed-VOW-672.jpg")
+# Fixin.create(code: "NEO", symbol: "https://draftsim.com/wp-content/uploads/2022/01/Kamigawa-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/h/Kamigawa-Neon-Dynasty-Draft-Booster-Pack-sealed-NEO-672.jpg")
+# Fixin.create(code: "SNC", symbol: "https://draftsim.com/wp-content/uploads/2022/03/SNC-set-symbol-300x300-1.webp", booster: "https://cdn1.mtggoldfish.com/images/h/Streets-of-New-Capenna-Draft-Booster-Pack-sealed-SNC-672.jpg")
+# Fixin.create(code: "2X2", symbol: "https://draftsim.com/wp-content/uploads/2022/05/Double-Masters-2022-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/h/Double-Masters-2022-Draft-Booster-Pack-sealed-2X2-672.jpg")
+# Fixin.create(code: "MED", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Masters-Edition-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Masters%2BEdition%2BBooster%2BPack%2B%253Csealed%253E%2B%255BMED%255D.jpg")
+# Fixin.create(code: "ME2", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Masters-Edition-II-set-symbol-300x270.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Masters%2BEdition%2BII%2BBooster%2BPack%2B%253Csealed%253E%2B%255BME2%255D.jpg")
+# Fixin.create(code: "ME3", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Masters-Edition-III-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Masters%2BEdition%2BIII%2BBooster%2BPack%2B%253Csealed%253E%2B%255BME3%255D.jpg")
+# Fixin.create(code: "ME4", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Masters-Edition-IV-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Masters%2BEdition%2BIV%2BBooster%2BPack%2B%253Csealed%253E%2B%255BME4%255D.jpg")
+# Fixin.create(code: "VMA", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Vintage-Masters-set-symbol.jpg", booster: "https://www.mtgotraders.com/store/media/products/boosters/Vintage_Masters_Booster.jpg")
 
 
 
