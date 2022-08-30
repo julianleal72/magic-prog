@@ -1,5 +1,5 @@
 class AddInfoToCards < ActiveRecord::Migration[7.0]
   def change
-    add_column :cards, :info, :json, default: {}
+    add_column :cards, :info, :json, default: "{}"
   end
 end
