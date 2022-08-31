@@ -10,24 +10,32 @@ import {
 import "./Drafter.css";
 import { Link } from "react-router-dom";
 import DraftSlider from "./DraftSlider.js";
-import {GiStarSwirl} from "react-icons/gi"
+import { GiStarSwirl } from "react-icons/gi";
 
 function Drafter({ user, sets, setSets, fixins }) {
   const [currentFilter, setCurrentFilter] = useState("code");
   const [chosenSet, setChosenSet] = useState(sets[0]);
-  const [chosenFixin, setChosenFixin] = useState(fixins.find(element => element.code === chosenSet.code))
+  const [chosenFixin, setChosenFixin] = useState(
+    fixins.find((element) => element.code === chosenSet.code)
+  );
   const [numPacks, setNumPacks] = useState(3);
   const [collection, setCollection] = useState("");
-
+  const dummy = {
+    symbol: "https://cdn-icons-png.flaticon.com/512/580/580185.png",
+    booster: "https://c1.scryfall.com/file/scryfall-card-backs/large/59/597b79b3-7d77-4261-871a-60dd17403388.jpg?1561757712", 
+    code: ""
+  }
   useEffect(() => {
     console.log(sets);
     handleSort(currentFilter);
-    setChosenSet(sets[0])
+    setChosenSet(sets[0]);
   }, []);
 
   function handleChange(e) {
     let set = sets.find((element) => element.code === e.target.value);
-    setChosenFixin(fixins.find(element => element.code === set.code))
+    let fixin = fixins.find((element) => element.code === set.code)
+    console.log(fixin)
+    setChosenFixin(fixin ? fixin : dummy);
     setChosenSet(set);
   }
   function handleCollectChange(e) {
@@ -67,7 +75,7 @@ function Drafter({ user, sets, setSets, fixins }) {
             <FormControl sx={{ padding: 0.8 }} size="small">
               <InputLabel>Set:</InputLabel>
               <Select
-                sx={{ padding: 0.5}}
+                sx={{ padding: 0.5 }}
                 onChange={handleChange}
                 value={chosenSet.code}
                 label="Set"
@@ -79,7 +87,7 @@ function Drafter({ user, sets, setSets, fixins }) {
                 ))}
               </Select>
             </FormControl>
-            <FormControl sx={{ padding: 0.8, width:"400px" }} size="small">
+            <FormControl sx={{ padding: 0.8, width: "400px" }} size="small">
               <InputLabel>Sort by:</InputLabel>
               <Select
                 sx={{ padding: 0.5 }}
@@ -95,18 +103,12 @@ function Drafter({ user, sets, setSets, fixins }) {
               </Select>
             </FormControl>
           </FormControl>
-        </div>
-        <div className="rightSideD">
-          <div className="leftSideE">
-            {chosenSet ? <SetTile set={chosenSet} user={user} fixin = {chosenFixin}/> : null}
-          </div>
-          <div className="rightSideE">
-            <FormControl sx={{ padding: 0.8 }} size="small">
+            <FormControl sx={{ padding: 0.8, width:400 }} size="small">
               <InputLabel>Collection to add to:</InputLabel>
               <Select
                 label="Collection to add to:"
                 onChange={handleCollectChange}
-                sx={{ padding: 0.5, width: 240 }}
+                sx={{ padding: 0.5, width: 400 }}
               >
                 {user.collections.map((collection) => (
                   <MenuItem key={collection.id} value={collection.id}>
@@ -114,28 +116,37 @@ function Drafter({ user, sets, setSets, fixins }) {
                   </MenuItem>
                 ))}
               </Select>
+              <br/>
             </FormControl>
-          </div>
+            <DraftSlider numPacks={numPacks} setNumPacks={setNumPacks} />
+            <br />
+            <Link
+              to="/packopener"
+              state={{
+                numPacks: { numPacks },
+                set: { chosenSet },
+                collection: { collection },
+                fixin: {chosenFixin}
+              }}
+            >
+              <Button
+                variant="contained"
+                color="success"
+                startIcon={<GiStarSwirl />}
+                endIcon={<GiStarSwirl />}
+              >
+                Draft!
+              </Button>
+            </Link>
         </div>
+        <div className="rightSideD">
+          {chosenSet ? (
+            <SetTile set={chosenSet} user={user} fixin={chosenFixin} />
+          ) : null}
+        </div>
+        <br />
+        <br />
       </div>
-      <br />
-      <br />
-      <br />
-      <DraftSlider numPacks={numPacks} setNumPacks={setNumPacks} />
-      <br />
-      <br />
-      
-        <Link
-          to="/packopener"
-          state={{
-            numPacks: { numPacks },
-            set: { chosenSet },
-            collection: { collection },
-          }}
-        ><Button variant="contained" color="success" startIcon={<GiStarSwirl/>} endIcon={<GiStarSwirl/>}>
-          Draft!</Button>
-        </Link>
-      
     </div>
   );
 }

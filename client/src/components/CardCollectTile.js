@@ -1,6 +1,6 @@
 import Cardraised from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import Badge from "@mui/material/Badge";
+import Chip from "@mui/material/Chip";
 import "./CardHover.css";
 
 function CardCollectTile({ card }) {
@@ -16,21 +16,22 @@ function CardCollectTile({ card }) {
         <CardMedia
           component="img"
           image={card.printing.info.imageUrl}
-          alt="cardtile"
+          alt={`${card.printing.info.name} - ${card.count}`}
           sx={{ padding: "0em 0em 0em 0em", objectFit: "contain" }}
         />
-
-        <Badge
-          badgeContent={`${card.count}x`}
-          color="primary"
+        <Chip className="chipper-gore"
+          label={`${card.count}x`}
           style={{
+            width:30,
             position: "absolute",
-            color: "white",
-            top: 75,
-            left: "50%",
+            color:"black",
+            fontWeight:"bold",
+            background:"yellow",
+            top: 80,
+            left: "22%",
             transform: "translateX(-50%)",
           }}
-        ></Badge>
+        ></Chip>
       </div>
     </Cardraised>
     </div>
