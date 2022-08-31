@@ -12,14 +12,14 @@ function SetTile({ set, user, fixin }) {
 
   return (
     <div>
-      <Card sx={{ width: 250 }}>
+      <Card sx={{ width: 200 }}>
         <CardHeader
-          avatar={<Avatar src={fixin.symbol} sx={{height:60, width:60}}alt="symbol"/>}
+          avatar={<Avatar src={fixin.symbol} alt="symbol"/>}
           title={`${set.name} - ${set.code}`}
           subheader={`Released ${set.release}`}
         />
         <CardContent>
-        <img src={fixin.booster} alt="booster pic" style={{maxWidth:200}}/>
+        <img src={fixin.booster} alt="booster pic"/>
         </CardContent>
       </Card>
     </div>

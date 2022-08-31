@@ -11,7 +11,6 @@ import {
   GiArchiveResearch,
   GiWhiteBook
 } from "react-icons/gi";
-import {FaRegPaperPlane} from 'react-icons/fa'
 
 function DeckEdit({ user }) {
   const [errors, setErrors] = useState([]);
@@ -180,26 +179,6 @@ function DeckEdit({ user }) {
     //console.log(deckContents);
   }
 
-
-
-
-  const downloadTxtFile = () => {
-    let text = ""
-    deckContents.forEach(element => {
-      text = text + `${element.count} ${element.printing.info.name}` +"\n"
-    })
-    const element = document.createElement("a");
-    const file = new Blob([text], {
-      type: "text/plain"
-    });
-    element.href = URL.createObjectURL(file);
-    element.download = `${deck.name}.txt`;
-    document.body.appendChild(element);
-    element.click();
-  };
-
-
-
   return (
     <div>
       <br />
@@ -239,7 +218,7 @@ function DeckEdit({ user }) {
               setShowHeader={setShowHeader}
             />
           ) : null}
-          <br />
+          <div></div>
           {showHeader ? null : (
             <div>
               <div className="deckList">
@@ -251,7 +230,6 @@ function DeckEdit({ user }) {
               </div>
               {errors ? errors.map((e) => <div key={e[0]}>{e[1]}</div>) : null}
               {/* {display? <img src={display}/> : null} */}
-              <br />
               <Button
                 onClick={commitCards}
                 variant="contained"
@@ -260,8 +238,6 @@ function DeckEdit({ user }) {
               >
                 Save Deck
               </Button>
-              <br />
-              <Button onClick={downloadTxtFile} sx={{color:"black"}} startIcon={<FaRegPaperPlane/>}>Export</Button>
             </div>
           )}
         </div>

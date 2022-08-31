@@ -141,8 +141,4 @@ Fixin.create(code: "ME3", symbol: "https://draftsim.com/wp-content/uploads/2021/
 Fixin.create(code: "ME4", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Masters-Edition-IV-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Masters%2BEdition%2BIV%2BBooster%2BPack%2B%253Csealed%253E%2B%255BME4%255D.jpg")
 Fixin.create(code: "VMA", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Vintage-Masters-set-symbol.jpg", booster: "https://www.mtgotraders.com/store/media/products/boosters/Vintage_Masters_Booster.jpg")
 
-
-
-
-
 puts "Done!"

@@ -6,8 +6,7 @@ import { GiOpenChest, GiBookmarklet } from "react-icons/gi";
 import { BiArrowFromLeft } from "react-icons/bi";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { RiEmotionHappyLine, RiEmotionUnhappyLine } from "react-icons/ri";
-import {MdOutlineRestartAlt} from "react-icons/md"
-
+import { MdOutlineRestartAlt } from "react-icons/md";
 
 function PackOpener() {
   let arr = [];
@@ -20,13 +19,11 @@ function PackOpener() {
   const [openedPacks, setOpenedPacks] = useState([]);
   const [numPacks, setNumPacks] = useState(location.state.numPacks.numPacks);
   const [alert, setAlert] = useState(false);
-  const [packArt, setPackArt] = useState(location.state.fixin.chosenFixin.booster)
 
   useEffect(() => {
     //console.log(location.state.numPacks.numPacks);
     //console.log(location.state.set.chosenSet)
     //console.log(location.state.collection.collection);
-    //console.log(packArt)
     let i = 1;
     while (i <= numPacks) {
       getPack(location.state.set.chosenSet.code);
@@ -128,11 +125,27 @@ function PackOpener() {
   return (
     <div>
       <div>
-        <h3>{numPacks} packs of {location.state.set.chosenSet.name}</h3>
+        <h3>
+          {numPacks} packs of {location.state.set.chosenSet.name}
+        </h3>
         {openedAll ? (
           <div style={{ display: "inline" }}>
-            <Button variant="contained" color="success" startIcon={<GiBookmarklet/>} onClick={handleCommit}>Add to Collection</Button>
-            <Button startIcon={<MdOutlineRestartAlt/>} variant="contained" color="secondary" onClick={goagain}>Draft Again</Button>
+            <Button
+              variant="contained"
+              color="success"
+              startIcon={<GiBookmarklet />}
+              onClick={handleCommit}
+            >
+              Add to Collection
+            </Button>
+            <Button
+              startIcon={<MdOutlineRestartAlt />}
+              variant="contained"
+              color="secondary"
+              onClick={goagain}
+            >
+              Draft Again
+            </Button>
             {alert ? null : (
               <Button
                 variant="contained"
@@ -175,7 +188,7 @@ function PackOpener() {
         ) : null}
         {openedAll ? null : (
           <div>
-                       <h5>
+            <h5>
               Packs Left: {numPacks - openedPacks.length}/{numPacks}
             </h5>
             {opened ? (
@@ -188,17 +201,17 @@ function PackOpener() {
                 Next Pack
               </Button>
             ) : null}
-            {opened ? null 
-            : (
-              <div><Button
-                variant="contained"
-                startIcon={<GiOpenChest />}
-                onClick={handleOpen}
-              >
-                Open Pack
-              </Button>
-              <br />
-              <img src={packArt} alt="packBabyyy" style={{maxWidth:250}}/>
+            {opened ? null : (
+              <div>
+                <Button
+                  variant="contained"
+                  startIcon={<GiOpenChest />}
+                  onClick={handleOpen}
+                >
+                  Open Pack
+                </Button>
+                <br />
+                <img src={packArt} alt="packBabyyy" style={{ maxWidth: 250 }} />
               </div>
             )}
           </div>
@@ -207,60 +220,69 @@ function PackOpener() {
       <br />
       {opened ? <Pack pack={packs[0]} /> : null}
       <div>
-      <br />
-      <div style={{ display: "inline" }}>
-      {openedAll ?
-          <div style={{ display: "inline" }}>
-            <Button variant="contained" color="success" startIcon={<GiBookmarklet/>} onClick={handleCommit}>Add to Collection</Button>
-            <Button startIcon={<MdOutlineRestartAlt/>} variant="contained" color="secondary" onClick={goagain}>Draft Again</Button></div>:null}
-        {alert ? null : (
-          <Button
-            variant="contained"
-            onClick={deleteAlert}
-            startIcon={<DeleteIcon />}
-            color="error"
-          >
-            Discard Draft
-          </Button>
-        )}
-        {alert ? (
-          <Alert
-            className="alert"
-            severity="warning"
-            action={
-              <div className="alertMessage">
-                <Button
-                  variant="outlined"
-                  onClick={undoDelete}
-                  color="success"
-                  startIcon={<RiEmotionHappyLine />}
-                >
-                  Just Kidding, There's Resale Value
-                </Button>
-                <Button
-                  onClick={handleDiscard}
-                  variant="outlined"
-                  endIcon={<RiEmotionUnhappyLine />}
-                  color="error"
-                >
-                  Uh, Yeah, These Pulls Were Trash
-                </Button>
-              </div>
-            }
-          >
-            Are you sure you want to release these cards to the wind?
-          </Alert>
-        ) : null}
+        <br />
+        <div style={{ display: "inline" }}>
+          {openedAll ? (
+            <div style={{ display: "inline" }}>
+              <Button
+                variant="contained"
+                color="success"
+                startIcon={<GiBookmarklet />}
+                onClick={handleCommit}
+              >
+                Add to Collection
+              </Button>
+              <Button
+                startIcon={<MdOutlineRestartAlt />}
+                variant="contained"
+                color="secondary"
+                onClick={goagain}
+              >
+                Draft Again
+              </Button>
+            </div>
+          ) : null}
+          {alert ? null : (
+            <Button
+              variant="contained"
+              onClick={deleteAlert}
+              startIcon={<DeleteIcon />}
+              color="error"
+            >
+              Discard Draft
+            </Button>
+          )}
+          {alert ? (
+            <Alert
+              className="alert"
+              severity="warning"
+              action={
+                <div className="alertMessage">
+                  <Button
+                    variant="outlined"
+                    onClick={undoDelete}
+                    color="success"
+                    startIcon={<RiEmotionHappyLine />}
+                  >
+                    Just Kidding, There's Resale Value
+                  </Button>
+                  <Button
+                    onClick={handleDiscard}
+                    variant="outlined"
+                    endIcon={<RiEmotionUnhappyLine />}
+                    color="error"
+                  >
+                    Uh, Yeah, These Pulls Were Trash
+                  </Button>
+                </div>
+              }
+            >
+              Are you sure you want to release these cards to the wind?
+            </Alert>
+          ) : null}
         </div>
       </div>
-      <br />
-      <br />
-      <div style={{display:"inline", width:900}}>
-          {openedPacks.map( pack => pack.map((card) => (
-              <img src={card.imageUrl} style={{width:60}}
-              />
-          )))}
-        </div>
+      <div></div>
     </div>
   );
 }
