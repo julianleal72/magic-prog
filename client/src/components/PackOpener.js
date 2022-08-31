@@ -19,6 +19,7 @@ function PackOpener() {
   const [openedPacks, setOpenedPacks] = useState([]);
   const [numPacks, setNumPacks] = useState(location.state.numPacks.numPacks);
   const [alert, setAlert] = useState(false);
+  const [packArt, setPackArt] = useState(location.state.fixin.chosenFixin.booster)
 
   useEffect(() => {
     //console.log(location.state.numPacks.numPacks);
@@ -102,17 +103,6 @@ function PackOpener() {
       i++;
     }
   }
-
-  // function condense() {
-  //   let jesus = [];
-  //   console.log(openedPacks);
-  //   openedPacks.forEach((element) => {
-  //     jesus = jesus.concat(element);
-  //   });
-  //   console.log(jesus);
-  //   return jesus;
-  // }
-  //don't display dupes and just display how many copies
 
   function deleteAlert() {
     setAlert(true);
