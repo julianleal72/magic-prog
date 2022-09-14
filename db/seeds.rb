@@ -1,4 +1,5 @@
 #puts MTG::Set.generate_booster('ktk')
+puts "Seeding Boosters!"
 
 Fixin.create(code: "LEA", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Limited-Edition-Alpha-set-symbol-300x300.png", booster:"https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/e/ee/Alpha_booster.jpg/revision/latest?cb=20131109145038" )
 Fixin.create(code: "LEB", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Limited-Edition-Beta-set-symbol.png" , booster: "https://product-images.tcgplayer.com/fit-in/839x839/27328.jpg")
@@ -56,7 +57,6 @@ Fixin.create(code: "TSP", symbol: "https://draftsim.com/wp-content/uploads/2021/
 Fixin.create(code: "PLC", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Planar-Chaos-set-symbol-300x226.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Planar%2BChaos%2BBooster%2BPack%2B%253Csealed%253E%2B%255BPLC%255D.jpg" )
 Fixin.create(code: "FUT", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Future-Sight-set-symbol-300x220.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Future%2BSight%2BBooster%2BPack%2B%253Csealed%253E%2B%255BFUT%255D.jpg")
 Fixin.create(code: "10E", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Tenth-Edition-set-symbol-300x231.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Tenth%2BEdition%2BBooster%2BPack%2B%253Csealed%253E%2B%255B10E%255D.jpg")
-Fixin.create(code: "MED", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Masters-Edition-set-symbol-1.png", booster: )
 Fixin.create(code: "LRW", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Lorwyn-set-symbol-211x300.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Lorwyn%2BBooster%2BPack%2B%253Csealed%253E%2B%255BLRW%255D.jpg")
 Fixin.create(code: "MOR", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Morningtide-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Morningtide%2BBooster%2BPack%2B%253Csealed%253E%2B%255BMOR%255D.jpg")
 Fixin.create(code: "SHM", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Shadowmoor-set-symbol-300x168.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Shadowmoor%2BBooster%2BPack%2B%253Csealed%253E%2B%255BSHM%255D.jpg")
@@ -140,9 +140,5 @@ Fixin.create(code: "ME2", symbol: "https://draftsim.com/wp-content/uploads/2021/
 Fixin.create(code: "ME3", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Masters-Edition-III-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Masters%2BEdition%2BIII%2BBooster%2BPack%2B%253Csealed%253E%2B%255BME3%255D.jpg")
 Fixin.create(code: "ME4", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Masters-Edition-IV-set-symbol.png", booster: "https://cdn1.mtggoldfish.com/images/gf/Masters%2BEdition%2BIV%2BBooster%2BPack%2B%253Csealed%253E%2B%255BME4%255D.jpg")
 Fixin.create(code: "VMA", symbol: "https://draftsim.com/wp-content/uploads/2021/11/Vintage-Masters-set-symbol.jpg", booster: "https://www.mtgotraders.com/store/media/products/boosters/Vintage_Masters_Booster.jpg")
-
-
-
-
 
 puts "Done!"

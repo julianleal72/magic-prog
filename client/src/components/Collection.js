@@ -98,7 +98,7 @@ function Collection({ collection, user, reload }) {
               className="edit"
               startIcon={<FiEdit3 />}
             >
-              <Link to="/user/collections/:id" state={{collection: {collection}, cards: {cards}}}>Manage </Link>
+              <Link to="/user/collections/:id" state={{collection: {collection}, cards: {cards}}}>Manage</Link>
             </Button>
             <Button
               variant="contained"
