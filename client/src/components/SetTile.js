@@ -9,12 +9,12 @@ function SetTile({ set, user, fixin }) {
   //   setNewCollection(true)
   // }
   //  {newCollection ? <NewCollectionForm user={user} drafter ={true}></NewCollectionForm> : <button onClick={handleNC}>Create a New Collection</button>}
-
+  console.log(fixin)
   return (
     <div>
       <Card sx={{ width: 250 }}>
         <CardHeader
-          avatar={<Avatar src={fixin.symbol} sx={{height:60, width:60}} alt="symbol"/>}
+          avatar={<Avatar src={fixin.symbol} sx={{height:60, width:60}} alt={fixin.code}/>}
           title={`${set.name} - ${set.code}`}
           subheader={`Released ${set.release}`}
         />

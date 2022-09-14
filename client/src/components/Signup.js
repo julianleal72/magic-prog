@@ -85,7 +85,8 @@ function SignUp() {
         ? errors.map((error) => (
             <div>
               {" "}
-              {error[0]} {error[1]}{" "}
+              {/* {error[0]}  */}
+              {error[1]}{" "}
             </div>
           ))
         : null}
